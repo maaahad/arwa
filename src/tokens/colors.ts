@@ -1,0 +1,62 @@
+export enum Light {
+    piccolo = '#4E46B4',
+    hit = '#40A69F',
+    beerus = '#EBEBEB',
+    gohan = '#FFFFFF',
+    goten = '#FFFFFF',
+    goku = '#F5F5F5',
+    bulma = '#000000',
+    trunks = '#999CA0',
+    popo = '#000000',
+    jiren = "#e9e8f6",
+    heles = "#f5f5f5",
+    zeno = "#707070",
+}
+
+export enum Dark {
+    piccolo = '#4E46B4',
+    hit = '#0B0B0B',
+    beerus = '#1F1F1F',
+    gohan = '#1F1F1F',
+    goten = '#FFFFFF',
+    goku = '#0B0B0B',
+    bulma = '#FFFFFF',
+    trunks = '#999CA0',
+    popo = '#000000',
+    jiren = "#e9e8f6",
+    heles = "#f5f5f5",
+    zeno = "#707070",
+}
+
+export enum Supportive {    
+    // krillin: Warning color
+    krillin_100 = '#ffb319',
+    krillin_60 = '#ffd47e',
+    krillin_10 = '#fff9ed',
+    // chichi: Error Color
+    chichi_100 = '#ff4e64',
+    chichi_60 = '#ff9ba8',
+    chichi_10 = '#fff1f3',
+    // roshi: Success color
+    roshi_100 = '#2e7d32',
+    roshi_60 = '#89b68c',
+    roshi_10 = '#eef5ef',
+    dodoria_100 = '#d33030',
+    dodoria_60 = '#e68b8b',
+    dodoria_10 = '#fceeee',
+    cell_100 = '#95f1d5',
+    cell_60 = '#c3f7e7',
+    cell_10 = '#f7fefc',
+    raditz_100 = '#b3804a',
+    raditz_60 = '#d4b899',
+    raditz_10 = '#f9f5f1',
+    whis_100 = '#3448f0',
+    whis_60 = '#8d98f7',
+    whis_10 = '#eff0fe',
+    frieza_100 = '#5c33cf',
+    frieza_60 = '#a38ce4',
+    frieza_10 = '#f2effb',
+    nappa_100 = '#725550',
+    nappa_60 = '#b09f9d',
+    nappa_10 = '#f4f1f1',
+}
