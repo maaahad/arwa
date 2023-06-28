@@ -1,3 +1,5 @@
+// FIXME: O or 0?
+
 export enum Light {
     piccolo = '#4E46B4',
     hit = '#4OA69F',
@@ -12,9 +14,20 @@ export enum Light {
     backdrop = '#4E46B4', // FIXME
 }
 
-// TODO: ColorTokensDark
+export enum Dark {
+    piccolo = '#4E46B4',
+    hit = '#OBOBOB',
+    beerus = '#1F1F1F',
+    gohan = '#1F1F1F',
+    goten = '#FFFFFF',
+    goku = '#OBOBOB',
+    bulma = '#FFFFFF',
+    trunks = '#999CAO',
+    popo = '#000000',
+    ghost = '#4E46B4', // FIXME
+    backdrop = '#4E46B4', // FIXME
+}
 
-// FIXME: O or 0?
 export enum Supportive {
     krillin_100 = '#FFB319',
     krillin_60 = '#FFC652',
