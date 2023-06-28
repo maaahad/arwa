@@ -1,9 +1,8 @@
 import { ColorTokens } from "../../tokens"
 
-// FIXME: generic type generation
 type Tokens = ColorTokens.Light | ColorTokens.Dark
 
-type ArwaColors = {
+export type ArwaColors = {
     accent: {
         primary: Tokens, 
         secondary: Tokens, 
@@ -28,5 +27,3 @@ type ArwaColors = {
     surface: Tokens,
     backdrop: Tokens
 }
-
-export default ArwaColors
