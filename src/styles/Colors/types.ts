@@ -1,36 +1,36 @@
+import { ColorTokens } from "../../tokens"
 
-import type { ColorTokensLight } from "../../tokens"
 // FIXME: generic type generation
 // Integrate with Tokens
 type ArwaColors = {
     light: {
         primary: {
-            main: ColorTokensLight, 
-            hover: ColorTokensLight,
+            main: ColorTokens.Light, 
+            hover: ColorTokens.Light,
         },
         secondary: {
-            main: ColorTokensLight, 
-            hover: ColorTokensLight,
+            main: ColorTokens.Light, 
+            hover: ColorTokens.Light,
         },
         text: {
             body: {
-                primary: ColorTokensLight,
-                secondary: ColorTokensLight,
+                primary: ColorTokens.Light,
+                secondary: ColorTokens.Light,
             }
             button: {
-                primary: ColorTokensLight,
-                secondary: ColorTokensLight,
+                primary: ColorTokens.Light,
+                secondary: ColorTokens.Light,
             }
         },
         border: {
-            main: ColorTokensLight,
-            hover: ColorTokensLight
+            main: ColorTokens.Light,
+            hover: ColorTokens.Light
         },
-        background: ColorTokensLight,
-        surface: ColorTokensLight,
-        ghost: ColorTokensLight, 
-        icon: ColorTokensLight,
-        backdrop: ColorTokensLight,
+        background: ColorTokens.Light,
+        surface: ColorTokens.Light,
+        ghost: ColorTokens.Light, 
+        icon: ColorTokens.Light,
+        backdrop: ColorTokens.Light,
     }
 }
 
