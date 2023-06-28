@@ -1,7 +1,7 @@
 
 
 import { ColorTokens } from "../../tokens";
-import ArwaColors from "./types";
+import {ArwaColors} from "./types";
 
 
 const getColors = (theme : 'Light' | 'Dark') : ArwaColors => {
@@ -33,11 +33,11 @@ const getColors = (theme : 'Light' | 'Dark') : ArwaColors => {
 }
 
 const Colors: {
-    light: ArwaColors,
-    dark: ArwaColors
+    Light: ArwaColors,
+    Dark: ArwaColors
 } = {
-    light: getColors('Light'),
-    dark: getColors('Dark'),
+    Light: getColors('Light'),
+    Dark: getColors('Dark'),
 }
 
 export default Colors
