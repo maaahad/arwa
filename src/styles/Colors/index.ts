@@ -1,35 +1,43 @@
 
-import type ArwaColors from "./types";
-import { ColorTokens } from "../../tokens";
 
-const Colors: ArwaColors = {
-    light: {
-        primary: {
-            main: ColorTokens.Light.piccolo,
-            hover: ColorTokens.Light.piccolo, // FIXME:
-        },
-        secondary: {
-            main: ColorTokens.Light.hit,
-            hover: ColorTokens.Light.hit, // FIXME:
+import { ColorTokens } from "../../tokens";
+import ArwaColors from "./types";
+
+
+const getColors = (theme : 'Light' | 'Dark') : ArwaColors => {
+    return {
+        accent: {
+            primary: ColorTokens[theme].piccolo,
+            secondary: ColorTokens[theme].hit,
         },
         text: {
             body: {
-                primary: ColorTokens.Light.bulma,
-                secondary: ColorTokens.Light.trunks,
+                primary: ColorTokens[theme].bulma,
+                secondary: ColorTokens[theme].trunks
             },
             button: {
-                primary: ColorTokens.Light.goten,
-                secondary: ColorTokens.Light.popo
+                primary: ColorTokens[theme].beerus,
+                secondary: ColorTokens[theme].popo
             }
         },
-        border: {
-            main: ColorTokens.Light.beerus,
-            hover: ColorTokens.Light.beerus, // FIXME:
+        hover: {
+            primary: ColorTokens[theme].heles, 
+            secondary: ColorTokens[theme].jiren
         },
-        background: ColorTokens.Light.goku,
-        surface: ColorTokens.Light.gohan,
-        ghost: ColorTokens.Light.ghost,
-        icon: ColorTokens.Light.trunks,
-        backdrop: ColorTokens.Light.backdrop
+        icon: ColorTokens[theme].trunks,
+        border: ColorTokens[theme].beerus,
+        background: ColorTokens[theme].goku,
+        surface: ColorTokens[theme].gohan,
+        backdrop: ColorTokens[theme].zeno
     }
 }
+
+const Colors: {
+    light: ArwaColors,
+    dark: ArwaColors
+} = {
+    light: getColors('Light'),
+    dark: getColors('Dark'),
+}
+
+export default Colors
