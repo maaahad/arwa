@@ -1,6 +1,6 @@
-import { ArwaTheme } from "./types"
 import Colors from "../colors"
 import { ShadowsTokens } from "../../tokens"
+import { ArwaTheme } from "styled-components"
 
 // TODO: need some util type for 
 // size
