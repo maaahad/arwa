@@ -3,7 +3,7 @@ import { ShadowsTokens } from '../../tokens'
 import 'styled-components'
 
 declare module 'styled-components' {
-    export interface ArwaTheme {
+    export interface DefaultTheme {
         colors: ArwaColors,
         shadows: {
             xs: Shadows,

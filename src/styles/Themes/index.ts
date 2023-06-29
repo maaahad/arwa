@@ -1,13 +1,13 @@
 import Colors from "../colors"
 import { ShadowsTokens } from "../../tokens"
-import { ArwaTheme } from "styled-components"
+import { DefaultTheme } from "styled-components"
 
 // TODO: need some util type for 
 // size
 
 // FIXME: write some jest-test
 
-const getShadows = (theme: 'Light' | 'Dark') :  ArwaTheme['shadows']=> {
+const getShadows = (theme: 'Light' | 'Dark') :  DefaultTheme['shadows']=> {
     return {
         xs: ShadowsTokens[theme].xs,
         sm: ShadowsTokens[theme].sm,
@@ -17,7 +17,7 @@ const getShadows = (theme: 'Light' | 'Dark') :  ArwaTheme['shadows']=> {
     }
 }
 
-const getTheme = (theme: 'Light' | 'Dark') : ArwaTheme => {
+const getTheme = (theme: 'Light' | 'Dark') : DefaultTheme => {
     return {
         colors: Colors[theme],
         shadows: getShadows(theme),
@@ -25,8 +25,8 @@ const getTheme = (theme: 'Light' | 'Dark') : ArwaTheme => {
 }
 
 const Theme: {
-    Light: ArwaTheme,
-    Dark: ArwaTheme,
+    Light: DefaultTheme,
+    Dark: DefaultTheme,
 } = {
     Light: getTheme('Light'),
     Dark: getTheme('Dark')
