@@ -2,6 +2,8 @@ import Colors from "../colors"
 import { ShadowsTokens } from "../../tokens"
 import { DefaultTheme } from "styled-components"
 
+import ArwaThemeProvider from './ArwaThemeProvider'
+
 // TODO: need some util type for 
 // size
 
@@ -24,7 +26,7 @@ const getTheme = (theme: 'Light' | 'Dark') : DefaultTheme => {
     }
 }
 
-const Theme: {
+export const Theme: {
     Light: DefaultTheme,
     Dark: DefaultTheme,
 } = {
@@ -32,4 +34,4 @@ const Theme: {
     Dark: getTheme('Dark')
 }
 
-export default Theme
+export default ArwaThemeProvider
