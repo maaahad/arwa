@@ -7,7 +7,6 @@ const ButtonStyled = styled.button<{variant: "primary" | "secondary"}>`
     cursor: pointer;
 
     ${({theme, variant}) => {
-        console.log(theme)
         return css`
             background-color: ${theme.colors.accent[variant]};
             color: ${theme.colors.text.button[variant]};
@@ -26,7 +25,7 @@ export type ButtonProps = {
     variant?: "primary" | "secondary" 
 }
 
-const Button = ( {label, disabled = false, variant = "primary"}: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ( {label, disabled = false, variant = "primary"}) => {
     const labelText: string = disabled ? `disabled: ${label}` : label
     return (
         <ButtonStyled variant={variant}>{labelText}</ButtonStyled>
