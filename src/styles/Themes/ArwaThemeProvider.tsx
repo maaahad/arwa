@@ -1,21 +1,27 @@
 import React, { ReactElement,  PropsWithChildren} from "react";
-import { DefaultTheme, createGlobalStyle, ThemeProvider } from "styled-components";
+import { DefaultTheme, createGlobalStyle, ThemeProvider, css } from "styled-components";
+import { Font } from "../../tokens";
 
 
-// FIXME: FontFace should come from tokens
 const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
-        // font-family: Averta Std, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell,
-        'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji;
+        font-family: ${Font.FontStack.body};
+        font-size: ${Font.FontSize.fs32};
+        font-weight: ${Font.FontWeight.regular};
     }
     *, *:before, *:after {
         margin: 0; 
         padding: 0;
         box-sizing: border-box;
     }
+    ${({theme}) => {
+        return css`
+            body {
+                color: ${theme.colors.text.body.primary};
+            }
+        `
+    }}
 ` 
 
 const ArwaThemeProvider: React.FC<PropsWithChildren<{theme: DefaultTheme}>> = ({children, theme}) : ReactElement => {
