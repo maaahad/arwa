@@ -3,6 +3,7 @@ import { ShadowsTokens } from '../../tokens'
 import 'styled-components'
 import { FontTokens } from '../../tokens'
 import { ArwaShadows } from '../shadows/types'
+import { ArwaTypography } from '../typography/types'
 
 
 declare module 'styled-components' {
@@ -12,15 +13,14 @@ declare module 'styled-components' {
         fontSize: FontTokens.FontSize
         fontWeight: FontTokens.FontWeight
         lineHeight: FontTokens.LineHeight
-        letterSpacing: FontTokens.LetterSpacint
+        // letterSpacing: FontTokens.LetterSpacing // FIXME: should be fixed later
     }
 
     export interface DefaultTheme {
-        colors: ArwaColors, // rename it to palette
+        colors: ArwaColors, // rename it to palette???
         shadows: ArwaShadows,
-        typography: {
-            h1: Typography
-        }
+        typography: ArwaTypography
+
         // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
         // breakpoints
         // spacing
