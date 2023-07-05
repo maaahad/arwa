@@ -8,6 +8,8 @@ export enum FontStack {
     'Courier New', 'andale mono', 'lucida console', monospace`,
 }
 
+
+// Add more font size
 export enum FontSize {
     fs12 = '12px',
     fs14 = '14x',
@@ -35,4 +37,9 @@ export enum LineHeight {
     lh1_75 = '1.75rem',
     lh2 = '2rem',
     lh2_5 = '2.5rem',
+}
+
+
+export enum LetterSpacing {
+
 }
