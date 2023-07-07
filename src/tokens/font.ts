@@ -8,7 +8,6 @@ export enum FontStack {
 }
 
 export enum FontSize {
-    fs9 = '9px',
     fs10 = '10px',
     fs12 = '12px',
     fs14 = '14x',

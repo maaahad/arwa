@@ -1,23 +1,22 @@
-
-// base styles
 import React,  { PropsWithChildren } from "react";
 import { styled, css } from "styled-components";
+import { TypographyProps } from "../types";
+import { getFontSize } from "../utils";
 
-const H1 = styled.h1`
-    ${({theme: {typography: {h1}}}) => {
+const H1 = styled.h1<TypographyProps>`
+    ${({theme: {typography: {h1}}, size = '2xl'}) => {
+        const fontSize = size === '2xl' ? h1.fontSize : getFontSize(size);
         return css`
-            font-size: ${h1.fontSize};
+            font-size: ${fontSize};
             font-weight: ${h1.fontWeight};
             line-height: ${h1.lineHeight};
         `
     }}
 `
 
-
-// add size props (optional)
-const Heading1:React.FC<PropsWithChildren<{}>> = ({children}) => {
+const Heading1:React.FC<PropsWithChildren<TypographyProps>> = ({children, size = '2xl'}) => {
     return (
-        <H1>
+        <H1 size={size}>
             {children}
         </H1>
     )
