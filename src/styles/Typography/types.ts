@@ -14,5 +14,6 @@ export type ArwaTypography = {
 export type TypographySize = '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl'
 
 export type TypographyProps = {
-    size?: TypographySize
+    size?: TypographySize, 
+    secondary?: boolean
 }

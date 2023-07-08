@@ -19,3 +19,11 @@ Default.args = {
     children: "I am a h1 tag",
     size: '7xl'
 }
+
+export const SecondaryXS = Template.bind({})
+
+SecondaryXS.args = {
+    children: "Secondary Heading1",
+    secondary: true,
+    size: 'xs'
+}
