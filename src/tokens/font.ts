@@ -1,5 +1,4 @@
 
-// BRAINSTORM: should this be added to theme??
 export enum FontStack {
     body = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell,
     'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -9,23 +8,25 @@ export enum FontStack {
 }
 
 export enum FontSize {
+    fs10 = '10px',
     fs12 = '12px',
-    fs14 = '14x',
+    fs14 = '14px',
     fs16 = '16px',
-    fs19 = '19px',
+    fs18 = '18px',
     fs20 = '20px',
-    fs21 = '21px',
-    fs23 = '23px',
-    fs25 = '25px',
-    fs28 = '28px',
+    fs24 = '24px',
     fs32 = '32px',
+    fs40 = '40px',
+    fs48 = '48px',
+    fs56 = '56px',
+    fs64 = '64px',
+    fs72 = '72px',
 }
 
 export enum FontWeight {
     regular = 400,
     semiBold = 500, 
-    Bold = 600,
-    heading = 700
+    bold = 600,
 }
 
 export enum LineHeight {
@@ -35,4 +36,9 @@ export enum LineHeight {
     lh1_75 = '1.75rem',
     lh2 = '2rem',
     lh2_5 = '2.5rem',
+}
+
+
+export enum LetterSpacing {
+
 }

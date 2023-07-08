@@ -1,13 +1,14 @@
 import React, { ReactElement,  PropsWithChildren} from "react";
 import { DefaultTheme, createGlobalStyle, ThemeProvider, css } from "styled-components";
-import { Font } from "../../tokens";
+import { FontTokens } from "../../tokens";
+
 
 const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
-        font-family: ${Font.FontStack.body};
-        font-size: ${Font.FontSize.fs32};
-        font-weight: ${Font.FontWeight.regular};
+        font-family: ${FontTokens.FontStack.body};
+        font-size: ${FontTokens.FontSize.fs32};
+        font-weight: ${FontTokens.FontWeight.regular};
     }
     *, *:before, *:after {
         margin: 0; 
