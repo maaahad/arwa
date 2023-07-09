@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         font-family: ${FontTokens.FontStack.body};
-        font-size: ${FontTokens.FontSize.fs32};
+        font-size: ${FontTokens.FontSize.fs16};
         font-weight: ${FontTokens.FontWeight.regular};
     }
     *, *:before, *:after {
