@@ -1,25 +1,39 @@
 import React, { useState } from "react"
 import { css, styled } from "styled-components"
+import { FontTokens } from "../../tokens"
 
 // TODO Accordion, AccordionItem, AccordionHeader, AccordionContent, AccordionButton
 
-
-// FIXME: Move styeld components to separate files
 const AccordionStyled = styled.div`
-    ${({theme}) => css`
-        border-radius: 8px; // !FIXME: in the theme
-        padding: 16px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    ${({theme: {shapes, colors}}) => css`
+        padding: 16px; // TODO: move to a const file
+        border-radius: ${shapes.borderRadius.sm};
+        background-color: ${colors.background};
     `}
 `
 
+
+const AccordionItem = styled.div`
+
+`
 
 const AccordionHeader = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 `
+
+
+const Title = styled.h3`
+    margin: 0;
+    font-size: ${FontTokens.FontSize.fs16};
+    font-weight: ${FontTokens.FontWeight.bold};
+    line-height: ${FontTokens.LineHeight.lh1_5};
+`
+
+
 
 const Accordion: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => {
     const [open, setOpen] = useState<boolean>(defaultOpen)
@@ -31,8 +45,8 @@ const Accordion: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => 
     return (
         <AccordionStyled>
             <AccordionHeader>
-                <p>Title</p>
-                <button onClick={handleOpen}>Toggle content</button>
+                <Title>This is a sample accordion Title</Title>
+                <button onClick={handleOpen}>ToDo:Tog</button>
             </AccordionHeader>
             {
                 open && (
@@ -46,3 +60,10 @@ const Accordion: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => 
 }
 
 export default Accordion
+
+
+// TODO:
+// Accordion.AccordionItem
+// Accordion.AccordionHeader
+// Accordion.AccordionContent
+// Accordion.AccordionButton
