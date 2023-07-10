@@ -1,21 +1,10 @@
-import React, { useState } from "react"
+import React, { PropsWithChildren, ReactNode, useState } from "react"
 import { css, styled } from "styled-components"
 import { FontTokens } from "../../tokens"
+import { AccordionStyled, AccordionItem } from "./styled"
 
 // TODO Accordion, AccordionItem, AccordionHeader, AccordionContent, AccordionButton
 
-const AccordionStyled = styled.div`
-    ${({theme: {shapes, colors}}) => css`
-        padding: 16px; // TODO: move to a const file
-        border-radius: ${shapes.borderRadius.sm};
-        background-color: ${colors.background};
-    `}
-`
-
-
-const AccordionItem = styled.div`
-
-`
 
 const AccordionHeader = styled.div`
     display: flex;
@@ -33,9 +22,20 @@ const Title = styled.h3`
     line-height: ${FontTokens.LineHeight.lh1_5};
 `
 
+type AccordionProps = {
+    expandAll?: boolean
+}
+
+const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, expandAll = false}) => {
+    return (
+        <AccordionStyled>
+            {children}
+        </AccordionStyled>
+    )
+}
 
 
-const Accordion: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => {
+const AccordionOLD: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => {
     const [open, setOpen] = useState<boolean>(defaultOpen)
 
     const handleOpen: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -59,8 +59,12 @@ const Accordion: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => 
     )
 }
 
+
 export default Accordion
 
+export {
+    AccordionItem
+}
 
 // TODO:
 // Accordion.AccordionItem
