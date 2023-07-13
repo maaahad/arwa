@@ -1,19 +1,9 @@
 import React, { PropsWithChildren, ReactNode, useState } from "react"
 import { css, styled } from "styled-components"
 import { FontTokens } from "../../tokens"
-import { AccordionStyled, AccordionItem } from "./styled"
+import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionDetails } from "./styled"
 
 // TODO Accordion, AccordionItem, AccordionHeader, AccordionContent, AccordionButton
-
-
-const AccordionHeader = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-`
-
 
 const Title = styled.h3`
     margin: 0;
@@ -26,6 +16,31 @@ type AccordionProps = {
     expandAll?: boolean
 }
 
+type AccordionItemProps = {
+    title: string
+}
+
+
+const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title}) => {
+    const [expanded, setExpanded] = useState<boolean>(false)
+
+    const handleExpand = () => {
+        setExpanded(!expanded)
+    }
+
+    return (
+        <AccordionItemStyled>
+            <AccordionHeader onClick={handleExpand}>
+                <Title>{title}</Title>
+                <div>Icon</div>
+            </AccordionHeader>
+            <AccordionDetails expanded={expanded}>
+                {children}
+            </AccordionDetails>
+        </AccordionItemStyled>
+    )
+}
+
 const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, expandAll = false}) => {
     return (
         <AccordionStyled>
@@ -33,32 +48,6 @@ const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, expand
         </AccordionStyled>
     )
 }
-
-
-const AccordionOLD: React.FC<{defaultOpen?: boolean}> = ({defaultOpen = false}) => {
-    const [open, setOpen] = useState<boolean>(defaultOpen)
-
-    const handleOpen: React.MouseEventHandler<HTMLButtonElement> = () => {
-        setOpen(!open)
-    }
-
-    return (
-        <AccordionStyled>
-            <AccordionHeader>
-                <Title>This is a sample accordion Title</Title>
-                <button onClick={handleOpen}>ToDo:Tog</button>
-            </AccordionHeader>
-            {
-                open && (
-                    <div>
-                        This is suppose to be Content       
-                    </div>
-                )
-            }
-        </AccordionStyled>
-    )
-}
-
 
 export default Accordion
 

@@ -14,14 +14,35 @@ export const AccordionStyled = styled.div`
 `
 
 
-export const AccordionItem = styled.div`
+export const AccordionItemStyled = styled.div`
     ${({theme: {shapes}}) => css`
         border-radius: ${shapes.borderRadius.sm};
-        padding: 8px 8px 8px 12px; // TODO: move to a const file
         background-color: ${ColorTokens.Light.gohan}; // TODO: move it to theme (primary bg) (bulma) based on light/dark theme
-        & > *:first-child {
-            border-bottom: 1px solid red;
-        }
     `}
 `
 
+export const AccordionHeader = styled.div`
+    ${({theme}) => css`
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 8px 8px 12px;
+    `}
+`
+
+export const AccordionDetails = styled.div<{expanded?: boolean}>`
+    ${({theme: {colors}, expanded = false}) => css`
+        padding: 0px;
+        max-height: 0px;
+        overflow: hidden;
+        ${expanded && css`
+            max-height: fit-content;
+            padding: 8px 8px 8px 12px;
+            border-top: 1px solid ${colors.border};
+            transition: max-height 10s ease-in; // TODO: use from theme, not working
+        `}
+    `}
+
+`

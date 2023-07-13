@@ -17,17 +17,32 @@ export const Default = Template.bind({})
 Default.args = {
     children: (
         <>
-            <AccordionItem>
-                <div>Title1</div>
-                <div>Content1</div>
+            <AccordionItem title="Title1">
+                <div>
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                </div>
             </AccordionItem>
-            <AccordionItem>
-                <div>Title2</div>
-                <div>Content2</div>
+            <AccordionItem title="Title 2">
+                <div>
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                </div>
             </AccordionItem>
-            <AccordionItem>
-                <div>Title3</div>
-                <div>Content3</div>
+            <AccordionItem title="Title3">
+                <div>
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                akf alsf jalf alfjlafj af alfj alsfj alf alf
+                </div>
             </AccordionItem>
         </>
 
