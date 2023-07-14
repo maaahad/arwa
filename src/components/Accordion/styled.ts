@@ -1,5 +1,5 @@
 import { css, styled } from "styled-components";
-import { FontTokens, ColorTokens } from "../../tokens"
+import { ColorTokens } from "../../tokens"
 
 export const AccordionStyled = styled.div`
     ${({theme: {shapes, colors}}) => css`
@@ -35,14 +35,26 @@ export const AccordionHeader = styled.div`
 export const AccordionDetails = styled.div<{expanded?: boolean}>`
     ${({theme: {colors}, expanded = false}) => css`
         padding: 0px;
-        max-height: 0px;
+        height: 0px;
         overflow: hidden;
         ${expanded && css`
-            max-height: fit-content;
+            height: fit-content;
             padding: 8px 8px 8px 12px;
             border-top: 1px solid ${colors.border};
-            transition: max-height 10s ease-in; // TODO: use from theme, not working
+            transition: height 1s ease-in; // TODO: use from theme, not working
         `}
     `}
+`
 
+export const AccordionIconContainer = styled.div<{expanded: boolean}>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in;
+    
+    ${({expanded = false}) => expanded ? css`
+        transform: rotate(180deg);
+    ` : css`
+        transform: rotate(0deg);
+    `} 
 `

@@ -1,7 +1,8 @@
-import React, { PropsWithChildren, ReactNode, useState } from "react"
+import React, { PropsWithChildren, ReactElement, ReactNode, useState } from "react"
 import { css, styled } from "styled-components"
 import { FontTokens } from "../../tokens"
-import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionDetails } from "./styled"
+import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionDetails, AccordionIconContainer } from "./styled"
+import { Icons } from "../.."
 
 // TODO Accordion, AccordionItem, AccordionHeader, AccordionContent, AccordionButton
 
@@ -18,10 +19,11 @@ type AccordionProps = {
 
 type AccordionItemProps = {
     title: string
+    icon?: ReactElement
 }
 
 
-const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title}) => {
+const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, icon = <Icons.DownArrow/>}) => {
     const [expanded, setExpanded] = useState<boolean>(false)
 
     const handleExpand = () => {
@@ -32,7 +34,9 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({childre
         <AccordionItemStyled>
             <AccordionHeader onClick={handleExpand}>
                 <Title>{title}</Title>
-                <div>Icon</div>
+                <AccordionIconContainer expanded={expanded}>
+                    {icon}
+                </AccordionIconContainer>
             </AccordionHeader>
             <AccordionDetails expanded={expanded}>
                 {children}
