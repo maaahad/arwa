@@ -9,13 +9,9 @@ export default {
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Accordion>
 
-const Template: StoryFn<typeof Accordion> = (args) => <Accordion {...args}/>
-
-export const Default = Template.bind({})
-
-Default.args = {
-    children: (
-        <>
+const Template: StoryFn<typeof Accordion> = () => {
+    return (
+        <Accordion>
             <AccordionItem title="Title1">
                 <div>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
@@ -43,7 +39,8 @@ Default.args = {
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                 </div>
             </AccordionItem>
-        </>
-
+        </Accordion>
     )
 }
+
+export const Default = Template.bind({})

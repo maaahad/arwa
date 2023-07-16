@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactElement, ReactNode, useState } from "react"
+import React, { Children, PropsWithChildren, ReactElement, useState, cloneElement } from "react"
 import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionContentStyled, AccordionIconContainer, Title } from "./styled"
 import { Icons } from "../.."
 
@@ -53,10 +53,19 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({childre
     )
 }
 
+// TODO: use JS to control expand transition
+// Ref: https://css-tricks.com/using-css-transitions-auto-dimensions/
+
 const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, singleOpen}) => {
     // TODO: need to control expand from parent
+    // Need to pass expanded/expand props to children
+
     return (
         <AccordionStyled>
+            {/* {
+                Children.map(children, (child, index) => cloneElement(child, {test: 'This is test'}))
+
+            } */}
             {children}
         </AccordionStyled>
     )
