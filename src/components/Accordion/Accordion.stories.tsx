@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion, {AccordionItem} from "./Accordion";
+import Accordion, {AccordionItem, AccordionContent} from "./Accordion";
 import { Meta, StoryFn } from "@storybook/react";
 import ArwaThemeProvider, {Theme} from "../../styles/themes";
 

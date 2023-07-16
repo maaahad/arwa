@@ -1,29 +1,37 @@
 import React, { PropsWithChildren, ReactElement, ReactNode, useState } from "react"
-import { css, styled } from "styled-components"
-import { FontTokens } from "../../tokens"
-import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionDetails, AccordionIconContainer } from "./styled"
+import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionContentStyled, AccordionIconContainer, Title } from "./styled"
 import { Icons } from "../.."
 
-// TODO Accordion, AccordionItem, AccordionHeader, AccordionContent, AccordionButton
 
-const Title = styled.h3`
-    margin: 0;
-    font-size: ${FontTokens.FontSize.fs16};
-    font-weight: ${FontTokens.FontWeight.bold};
-    line-height: ${FontTokens.LineHeight.lh1_5};
-`
+type ItemSize = 'sm' | 'md' | 'lg' | 'xl'
 
 type AccordionProps = {
-    expandAll?: boolean
+    singleOpen?: false 
+    itemSize?: ItemSize
 }
 
 type AccordionItemProps = {
     title: string
     icon?: ReactElement
+    disabled?: boolean
+}
+
+type AccordionContentProps = {
+    expanded?: boolean
 }
 
 
-const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, icon = <Icons.DownArrow/>}) => {
+
+
+const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({children, expanded = false}) => {
+    return (
+        <AccordionContentStyled expanded={expanded}>
+            {children}
+        </AccordionContentStyled>
+    )
+} 
+
+const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, disabled = false, icon = <Icons.DownArrow/>}) => {
     const [expanded, setExpanded] = useState<boolean>(false)
 
     const handleExpand = () => {
@@ -38,14 +46,15 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({childre
                     {icon}
                 </AccordionIconContainer>
             </AccordionHeader>
-            <AccordionDetails expanded={expanded}>
+            <AccordionContent expanded={expanded}>
                 {children}
-            </AccordionDetails>
+            </AccordionContent>
         </AccordionItemStyled>
     )
 }
 
-const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, expandAll = false}) => {
+const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, singleOpen}) => {
+    // TODO: need to control expand from parent
     return (
         <AccordionStyled>
             {children}
@@ -56,11 +65,6 @@ const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, expand
 export default Accordion
 
 export {
-    AccordionItem
+    AccordionItem,
+    AccordionContent
 }
-
-// TODO:
-// Accordion.AccordionItem
-// Accordion.AccordionHeader
-// Accordion.AccordionContent
-// Accordion.AccordionButton

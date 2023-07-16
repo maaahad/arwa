@@ -1,5 +1,5 @@
 import { css, styled } from "styled-components";
-import { ColorTokens } from "../../tokens"
+import { FontTokens, ColorTokens } from "../../tokens"
 
 export const AccordionStyled = styled.div`
     ${({theme: {shapes, colors}}) => css`
@@ -11,6 +11,14 @@ export const AccordionStyled = styled.div`
         align-items: stretch;
         gap: 8px;
     `}
+`
+
+
+export const Title = styled.h3`
+    margin: 0;
+    font-size: ${FontTokens.FontSize.fs16};
+    font-weight: ${FontTokens.FontWeight.bold};
+    line-height: ${FontTokens.LineHeight.lh1_5};
 `
 
 
@@ -32,16 +40,17 @@ export const AccordionHeader = styled.div`
     `}
 `
 
-export const AccordionDetails = styled.div<{expanded?: boolean}>`
+export const AccordionContentStyled = styled.div<{expanded?: boolean}>`
     ${({theme: {colors}, expanded = false}) => css`
         padding: 0px;
-        height: 0px;
+        max-height: 0px;
         overflow: hidden;
         ${expanded && css`
-            height: fit-content;
+            height: auto;
+            max-height: 1000px;
             padding: 8px 8px 8px 12px;
             border-top: 1px solid ${colors.border};
-            transition: height 1s ease-in; // TODO: use from theme, not working
+            transition: max-height 3s ease-out;
         `}
     `}
 `
