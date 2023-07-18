@@ -9,9 +9,9 @@ export default {
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Accordion>
 
-const Template: StoryFn<typeof Accordion> = () => {
+const Template: StoryFn<typeof Accordion> = (args) => {
     return (
-        <Accordion>
+        <Accordion {...args}>
             <AccordionItem title="Title1">
                 <div>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
@@ -44,3 +44,8 @@ const Template: StoryFn<typeof Accordion> = () => {
 }
 
 export const Default = Template.bind({})
+
+export const SingleOpen = Template.bind({})
+SingleOpen.args = {
+    singleOpen: true
+}

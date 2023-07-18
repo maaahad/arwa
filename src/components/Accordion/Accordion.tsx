@@ -1,4 +1,4 @@
-import React, { Children, PropsWithChildren, ReactElement, useState, cloneElement } from "react"
+import React, { Children, PropsWithChildren, ReactElement, useState, cloneElement, ReactNode } from "react"
 import { AccordionStyled, AccordionItemStyled, AccordionHeader, AccordionContentStyled, AccordionIconContainer, Title } from "./styled"
 import { Icons } from "../.."
 
@@ -6,7 +6,7 @@ import { Icons } from "../.."
 type ItemSize = 'sm' | 'md' | 'lg' | 'xl'
 
 type AccordionProps = {
-    singleOpen?: false 
+    singleOpen?: boolean 
     itemSize?: ItemSize
 }
 
@@ -14,39 +14,35 @@ type AccordionItemProps = {
     title: string
     icon?: ReactElement
     disabled?: boolean
+    expand?: boolean
+    onToggle?: () => void
 }
 
 type AccordionContentProps = {
-    expanded?: boolean
+    expand?: boolean
 }
 
 
 
 
-const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({children, expanded = false}) => {
+const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({children, expand = false}) => {
     return (
-        <AccordionContentStyled expanded={expanded}>
+        <AccordionContentStyled expand={expand}>
             {children}
         </AccordionContentStyled>
     )
 } 
 
-const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, disabled = false, icon = <Icons.DownArrow/>}) => {
-    const [expanded, setExpanded] = useState<boolean>(false)
-
-    const handleExpand = () => {
-        setExpanded(!expanded)
-    }
-
+const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, onToggle = () => {}, expand = false, disabled = false, icon = <Icons.DownArrow/>}) => {
     return (
         <AccordionItemStyled>
-            <AccordionHeader onClick={handleExpand}>
+            <AccordionHeader onClick={onToggle}>
                 <Title>{title}</Title>
-                <AccordionIconContainer expanded={expanded}>
+                <AccordionIconContainer expand={expand}>
                     {icon}
                 </AccordionIconContainer>
             </AccordionHeader>
-            <AccordionContent expanded={expanded}>
+            <AccordionContent expand={expand}>
                 {children}
             </AccordionContent>
         </AccordionItemStyled>
@@ -56,17 +52,34 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({childre
 // TODO: use JS to control expand transition
 // Ref: https://css-tricks.com/using-css-transitions-auto-dimensions/
 
-const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, singleOpen}) => {
-    // TODO: need to control expand from parent
-    // Need to pass expanded/expand props to children
+const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, singleOpen = false}) => {
+    const childrenArray = Children.toArray(children) as ReactElement[]
+    const [expandStatus, setExpandStatus]  = useState<boolean[]>(childrenArray.map(() => false))
+
+    // TODO: cleanup
+    const handleToggle = (index: number) => {  
+        if(singleOpen) {
+            setExpandStatus(expandStatus.map((v, i) => {
+                if(i === index) return !v 
+                return false
+            }))
+        }
+        else {
+            setExpandStatus(expandStatus.map((v, i) => {
+                if(i === index) return !v 
+                return v
+            }))
+        }
+    }
+
+    console.log(expandStatus)
 
     return (
         <AccordionStyled>
-            {/* {
-                Children.map(children, (child, index) => cloneElement(child, {test: 'This is test'}))
-
-            } */}
-            {children}
+            {
+                childrenArray.map(((child, index) => cloneElement(child, {onToggle: () => handleToggle(index), expand: expandStatus[index]})))
+            }
+            {/* {children} */}
         </AccordionStyled>
     )
 }

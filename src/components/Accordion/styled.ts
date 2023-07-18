@@ -40,12 +40,12 @@ export const AccordionHeader = styled.div`
     `}
 `
 
-export const AccordionContentStyled = styled.div<{expanded?: boolean}>`
-    ${({theme: {colors}, expanded = false}) => css`
+export const AccordionContentStyled = styled.div<{expand?: boolean}>`
+    ${({theme: {colors}, expand = false}) => css`
         padding: 0px;
         max-height: 0px;
         overflow: hidden;
-        ${expanded && css`
+        ${expand && css`
             height: auto;
             max-height: 1000px;
             padding: 8px 8px 8px 12px;
@@ -55,13 +55,13 @@ export const AccordionContentStyled = styled.div<{expanded?: boolean}>`
     `}
 `
 
-export const AccordionIconContainer = styled.div<{expanded: boolean}>`
+export const AccordionIconContainer = styled.div<{expand: boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all .3s ease-in;
     
-    ${({expanded = false}) => expanded ? css`
+    ${({expand = false}) => expand ? css`
         transform: rotate(180deg);
     ` : css`
         transform: rotate(0deg);
