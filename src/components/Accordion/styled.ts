@@ -29,14 +29,18 @@ export const AccordionItemStyled = styled.div`
     `}
 `
 
-export const AccordionHeader = styled.div`
-    ${({theme}) => css`
+export const AccordionHeader = styled.div<{disabled: boolean}>`
+    ${({theme, disabled = false}) => css`
         cursor: pointer;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         padding: 8px 8px 8px 12px;
+        ${disabled && css`
+            cursor: auto;
+            color: ${theme.colors.text.body.secondary};
+        `}
     `}
 `
 

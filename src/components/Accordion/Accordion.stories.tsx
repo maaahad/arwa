@@ -30,7 +30,7 @@ const Template: StoryFn<typeof Accordion> = (args) => {
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                 </div>
             </AccordionItem>
-            <AccordionItem title="Title3">
+            <AccordionItem title="Title3 --> Disabled" disabled>
                 <div>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf

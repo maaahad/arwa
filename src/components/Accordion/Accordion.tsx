@@ -36,7 +36,7 @@ const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({c
 const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, onToggle = () => {}, expand = false, disabled = false, icon = <Icons.DownArrow/>}) => {
     return (
         <AccordionItemStyled>
-            <AccordionHeader onClick={onToggle}>
+            <AccordionHeader disabled={disabled} onClick={disabled ? undefined : onToggle}>
                 <Title>{title}</Title>
                 <AccordionIconContainer expand={expand}>
                     {icon}
@@ -56,7 +56,6 @@ const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, single
     const childrenArray = Children.toArray(children) as ReactElement[]
     const [expandStatus, setExpandStatus]  = useState<boolean[]>(childrenArray.map(() => false))
 
-    // TODO: cleanup
     const handleToggle = (index: number) => {  
         if(singleOpen) {
             setExpandStatus(expandStatus.map((v, i) => {
@@ -72,14 +71,11 @@ const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, single
         }
     }
 
-    console.log(expandStatus)
-
     return (
         <AccordionStyled>
             {
                 childrenArray.map(((child, index) => cloneElement(child, {onToggle: () => handleToggle(index), expand: expandStatus[index]})))
             }
-            {/* {children} */}
         </AccordionStyled>
     )
 }
