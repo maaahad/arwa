@@ -12,32 +12,32 @@ export default {
 const Template: StoryFn<typeof Accordion> = (args) => {
     return (
         <Accordion {...args}>
-            <AccordionItem title="Title1">
-                <div>
+            <AccordionItem title="Title1 --> outside" outside>
+                <>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
-                </div>
+                </>
             </AccordionItem>
             <AccordionItem title="Title 2">
-                <div>
+                <>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
-                </div>
+                </>
             </AccordionItem>
             <AccordionItem title="Title3 --> Disabled" disabled>
-                <div>
+                <>
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
                     akf alsf jalf alfjlafj af alfj alsfj alf alf
-                </div>
+                </>
             </AccordionItem>
         </Accordion>
     )

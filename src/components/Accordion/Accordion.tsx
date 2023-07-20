@@ -12,37 +12,52 @@ type AccordionProps = {
 
 type AccordionItemProps = {
     title: string
-    icon?: ReactElement
+    toggleIcon?: ReactElement
     disabled?: boolean
     expand?: boolean
     onToggle?: () => void
+    outside?: boolean
 }
 
 type AccordionContentProps = {
     expand?: boolean
+    outside?: boolean
 }
 
 
 
 
-const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({children, expand = false}) => {
+const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({children, expand = false, outside = false}) => {
     return (
-        <AccordionContentStyled expand={expand}>
+        <AccordionContentStyled expand={expand} outside={outside}>
             {children}
         </AccordionContentStyled>
     )
 } 
 
-const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({children, title, onToggle = () => {}, expand = false, disabled = false, icon = <Icons.DownArrow/>}) => {
+const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({
+    children, 
+    title, 
+    onToggle = () => {}, 
+    expand = false, 
+    disabled = false, 
+    outside = false,
+    toggleIcon = <Icons.DownArrow/>}
+) => {
     return (
-        <AccordionItemStyled>
-            <AccordionHeader disabled={disabled} onClick={disabled ? undefined : onToggle}>
+        <AccordionItemStyled expand={expand} outside={outside}>
+            <AccordionHeader 
+                disabled={disabled} 
+                onClick={disabled ? undefined : onToggle}
+                expand={expand}
+                outside={outside}
+            >
                 <Title>{title}</Title>
                 <AccordionIconContainer expand={expand}>
-                    {icon}
+                    {toggleIcon}
                 </AccordionIconContainer>
             </AccordionHeader>
-            <AccordionContent expand={expand}>
+            <AccordionContent expand={expand} outside={outside}>
                 {children}
             </AccordionContent>
         </AccordionItemStyled>
@@ -51,7 +66,6 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({childre
 
 // TODO: use JS to control expand transition
 // Ref: https://css-tricks.com/using-css-transitions-auto-dimensions/
-
 const Accordion:React.FC<PropsWithChildren<AccordionProps>> = ({children, singleOpen = false}) => {
     const childrenArray = Children.toArray(children) as ReactElement[]
     const [expandStatus, setExpandStatus]  = useState<boolean[]>(childrenArray.map(() => false))
