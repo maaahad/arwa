@@ -3,6 +3,8 @@ import { DefaultTheme } from "styled-components"
 import ArwaThemeProvider from './ArwaThemeProvider'
 import Shadows from "../shadows"
 import Typography from "../typography"
+import Shapes from "../shapes"
+
 
 // TODO: need some util type for 
 // size
@@ -13,6 +15,7 @@ const getTheme = (theme: 'Light' | 'Dark') : DefaultTheme => {
         colors: Colors[theme],
         shadows: Shadows[theme],
         typography: Typography,
+        shapes: Shapes
     }
 }
 

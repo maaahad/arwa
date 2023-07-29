@@ -4,6 +4,7 @@ import 'styled-components'
 import { FontTokens } from '../../tokens'
 import { ArwaShadows } from '../shadows/types'
 import { ArwaTypography } from '../typography/types'
+import { ArwaShapes } from '../shapes/types'
 
 
 declare module 'styled-components' {
@@ -20,11 +21,11 @@ declare module 'styled-components' {
         colors: ArwaColors, // rename it to palette???
         shadows: ArwaShadows,
         typography: ArwaTypography
+        shapes: ArwaShapes
 
         // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
         // breakpoints
         // spacing
-        // shape (border radius)
         // transitions
         // zIndex
         // typography
