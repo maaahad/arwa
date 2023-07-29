@@ -59,9 +59,9 @@ export const AccordionHeader = styled.div<{disabled?: boolean, outside?: boolean
 
 export const AccordionContentStyled = styled.div<{expand?: boolean, outside?: boolean}>`
     ${({theme: {colors}, expand = false, outside = false}) => css`
+        overflow: hidden;
         padding: 0px;
         max-height: 0px;
-        overflow: hidden;
         border-radius: 8px;
         background-color: ${ColorTokens.Light.gohan}; // TODO: move it to theme (primary bg) (bulma) based on light/dark theme
         ${expand && css`
@@ -73,7 +73,7 @@ export const AccordionContentStyled = styled.div<{expand?: boolean, outside?: bo
             ` : css`
                 border-top: 1px solid ${colors.border};
             `}
-            transition: max-height 3s ease-out;
+            transition: max-height 3s linear;
         `}
 
         ${expand && !outside && css`
