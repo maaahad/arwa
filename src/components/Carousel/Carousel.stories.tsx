@@ -9,9 +9,14 @@ export default {
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Carousel>
 
-const Teamplate: StoryFn<typeof Carousel> = (args) => <Carousel {...args}/>
+const Template: StoryFn<typeof Carousel> = (args) => <Carousel {...args}/>
 
-export const Default  = Teamplate.bind({})
+export const Default  = Template.bind({})
 Default.args = {
     
+}
+
+export const RoundControls = Template.bind({})
+RoundControls.args = {
+    roundControls: true
 }

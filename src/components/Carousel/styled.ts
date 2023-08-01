@@ -4,24 +4,42 @@ import { styled, css } from "styled-components";
 export const CarouselStyled = styled.div`
     position: relative;
     display: grid;
-    background-color: grey;
+    background-color: white;
     height: 500px;
+    border: 1px solid green;
+    width: 200px;
 `
-
-export const ControlStyled = styled.div`
+// TODO: a util for centerd by flex (centerize)
+export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?: boolean}>`
+    cursor: pointer;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 32px; // Configured
+    height: 32px; // Configured
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-`
+    justify-content: center;
 
-export const ControlButton = styled.button`
-    background-color: #cbcbcb;
-    width: 40px; // Configured
-    height: 40px; // Configured
+    ${({slot, round = false, theme: {colors, shapes, shadows}}) => css`
+        border: 1px solid ${colors.border};
+        border-radius: ${shapes.borderRadius.sm};
+        box-shadow: ${shadows.xs};
+        transition: all .3s ease-in; // Should come from theme
+        ${round && css`
+            border-radius: 50%;
+        `}
+
+        ${slot === 'left' ? css`
+            left: 0px;
+        ` : css`
+            right: 0px;
+        `}
+
+        &:hover {
+            background-color: ${colors.background};
+        }
+    `}
+
 `
