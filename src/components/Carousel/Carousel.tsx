@@ -1,11 +1,16 @@
-import React from "react";
-import { CarouselStyled, ControlButtonStyled } from "./styled";
+import React, {Children, PropsWithChildren, PropsWithRef, ReactElement, ReactNode, useRef, createRef, RefObject, useState, useEffect} from "react";
+import { CarouselStyled, ControlButtonStyled, SlidersContainer } from "./styled";
 import { ChevronLeft, ChevronRight } from "../../styles/iconography";
+import { getComponentRef } from "../../utils/components";
+import { scrollIntoView } from "../../utils/window";
 
 type Props = {
-    autoSlideDelay?: number
+    autoSlideDelay?: number // later
+    // TODO: is it possible to combine these two??
     withControls?: boolean
     roundControls?: boolean
+    slides: ReactElement[],
+    forceSlideTo?: number
 }
 
 type ControlProps = {
@@ -39,19 +44,47 @@ const Control: React.FC<ControlProps> = ({onClick, roundControls = false}) => {
     )
 }
 
-const Carousel: React.FC<Props> = ({autoSlideDelay, withControls = true, roundControls = false}) => {
-    // TODO: Implement
+// Write HOC named withRef, withPortal (To avoid repeatation)
+const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<Props>>(({forceSlideTo = 0, autoSlideDelay, slides = [], withControls = true, roundControls = false}, ref) : ReactNode=> {
+    const carouselRef = useRef<HTMLDivElement>(null)
+    const [currentIndex, setCurrentIndex] = useState<number>(forceSlideTo)
+    const slidesLength = slides.length
+    
+    const slidesRef = useRef<RefObject<HTMLDivElement>[]>(
+        Array.from({length: slides.length}, () => createRef<HTMLDivElement>())
+    )
+
     const handleSlideTo = (slideTo: 'left' | 'right') => {
-        console.log('Sliding to : ', slideTo)
+        if(slideTo === 'left') {
+            currentIndex === 0 ? setCurrentIndex(slidesLength - 1) : setCurrentIndex(currentIndex - 1)
+        } else {
+            currentIndex === slidesLength - 1 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
+        }
     }
 
+    const renderSlide = (slide: ReactElement, index: number) => {
+        return (
+            <div ref={slidesRef.current[index]}>
+                {slide}
+            </div>
+        )
+    }
+
+    useEffect(() => {
+        scrollIntoView(slidesRef.current[currentIndex].current)
+    }, [currentIndex, slidesRef.current[currentIndex]])
+
+
     return (
-        <CarouselStyled>
+        <CarouselStyled ref={getComponentRef(carouselRef, ref)}>
             {withControls && <Control onClick={handleSlideTo} roundControls={roundControls}/>}
-            <div>This is the content of the Carousel</div>
+            <SlidersContainer>
+                {slides.map(renderSlide)}
+            </SlidersContainer>
+            {/* add indicators */}
         </CarouselStyled>
     )
-}
 
+})
 
 export default Carousel

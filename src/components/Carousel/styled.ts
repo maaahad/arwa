@@ -3,11 +3,8 @@ import { styled, css } from "styled-components";
 
 export const CarouselStyled = styled.div`
     position: relative;
-    display: grid;
-    background-color: white;
-    height: 500px;
-    border: 1px solid green;
-    width: 200px;
+    height: 200px;
+    border: 1px solid red;
 `
 // TODO: a util for centerd by flex (centerize)
 export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?: boolean}>`
@@ -42,4 +39,21 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
         }
     `}
 
+`
+
+export const SlidersContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    grid-auto-rows: 100%;
+    overflow-x: scroll;
+    gap: 80px;
+    & > * {
+        border: 1px solid yellow;
+        width:30%;
+        height: 100%;
+        background-color: green;
+    }
 `

@@ -9,7 +9,18 @@ export default {
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Carousel>
 
-const Template: StoryFn<typeof Carousel> = (args) => <Carousel {...args}/>
+const Template: StoryFn<typeof Carousel> = (args) => {
+    const slides = [
+        <div>One</div>,
+        <div>Two</div>,
+        <div>Three</div>,
+        <div>Four</div>,
+        <div>Five</div>,
+    ]
+    return (
+        <Carousel {...args} slides={slides}/>
+    )
+}
 
 export const Default  = Template.bind({})
 Default.args = {
