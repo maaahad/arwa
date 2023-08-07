@@ -9,14 +9,19 @@ export default {
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Carousel>
 
+const style = {
+    backgroundColor: '#708090',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // height: '100%'
+}
+
 const Template: StoryFn<typeof Carousel> = (args) => {
-    const slides = [
-        <div>One</div>,
-        <div>Two</div>,
-        <div>Three</div>,
-        <div>Four</div>,
-        <div>Five</div>,
-    ]
+    const slides = Array.from({length: 5}, (_v, index) => (
+        <div key={index} style={style}>{`Slide ${index}`}</div>
+    ))
+
     return (
         <Carousel {...args} slides={slides}/>
     )
@@ -24,10 +29,23 @@ const Template: StoryFn<typeof Carousel> = (args) => {
 
 export const Default  = Template.bind({})
 Default.args = {
-    
+    height: 400
 }
 
 export const RoundControls = Template.bind({})
 RoundControls.args = {
-    roundControls: true
+    roundControls: true,
+    height: 400
+}
+
+export const AutoSlide = Template.bind({})
+AutoSlide.args = {
+    autoSlide: true, 
+    height: 400
+}
+
+export const WithIndicators = Template.bind({})
+WithIndicators.args = {
+    height: 400,
+    withIndicators : true
 }

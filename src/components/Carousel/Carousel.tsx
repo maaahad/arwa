@@ -1,16 +1,18 @@
-import React, {Children, PropsWithChildren, PropsWithRef, ReactElement, ReactNode, useRef, createRef, RefObject, useState, useEffect} from "react";
-import { CarouselStyled, ControlButtonStyled, SlidersContainer } from "./styled";
+import React, {PropsWithRef, ReactElement, ReactNode, useRef, createRef, RefObject, useState, useEffect} from "react";
+import { CarouselStyled, ControlButtonStyled, SlidesContainer, Slide, IndicatorsStyled, IndicatorDot } from "./styled";
 import { ChevronLeft, ChevronRight } from "../../styles/iconography";
 import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 
 type Props = {
-    autoSlideDelay?: number // later
-    // TODO: is it possible to combine these two??
     withControls?: boolean
     roundControls?: boolean
     slides: ReactElement[],
     forceSlideTo?: number
+    height: number
+    autoSlide?: boolean
+    autoSlideInterval?: number 
+    withIndicators?: boolean
 }
 
 type ControlProps = {
@@ -22,6 +24,12 @@ type ControlButtonProps = {
     slot: 'left' | 'right'
     round?: boolean
     onClick: (slideTo: 'left' | 'right') => void
+}
+
+type IndicatorsProps = {
+    selectedIndex: number, 
+    total: number
+    onSlide: (to: number) => void
 }
 
 // TODO: next Indicators (dots), can be used in case single per show only
@@ -44,8 +52,29 @@ const Control: React.FC<ControlProps> = ({onClick, roundControls = false}) => {
     )
 }
 
+const Indicators:React.FC<IndicatorsProps> = ({selectedIndex, total, onSlide}) => {
+    return (
+        <IndicatorsStyled>
+            {
+                Array.from({length: total}, (_v, index) => (
+                    <IndicatorDot selected={index === selectedIndex} onClick={() => onSlide(index)}/>
+                ))
+            }
+        </IndicatorsStyled>
+    )
+}
+
 // Write HOC named withRef, withPortal (To avoid repeatation)
-const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<Props>>(({forceSlideTo = 0, autoSlideDelay, slides = [], withControls = true, roundControls = false}, ref) : ReactNode=> {
+const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<Props>>(({
+    autoSlideInterval = 3000, 
+    autoSlide = false, 
+    height, 
+    forceSlideTo = 0, 
+    slides = [], 
+    withControls = true, 
+    roundControls = false,
+    withIndicators = false
+}, ref) : ReactNode=> {
     const carouselRef = useRef<HTMLDivElement>(null)
     const [currentIndex, setCurrentIndex] = useState<number>(forceSlideTo)
     const slidesLength = slides.length
@@ -64,9 +93,9 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
 
     const renderSlide = (slide: ReactElement, index: number) => {
         return (
-            <div ref={slidesRef.current[index]}>
+            <Slide ref={slidesRef.current[index]}>
                 {slide}
-            </div>
+            </Slide>
         )
     }
 
@@ -75,13 +104,20 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     }, [currentIndex, slidesRef.current[currentIndex]])
 
 
+    useEffect(() => {
+        if(autoSlide) {
+            setInterval(() => handleSlideTo('right'), autoSlideInterval)
+        }
+    }, [handleSlideTo, autoSlide])
+
     return (
-        <CarouselStyled ref={getComponentRef(carouselRef, ref)}>
-            {withControls && <Control onClick={handleSlideTo} roundControls={roundControls}/>}
-            <SlidersContainer>
+        <CarouselStyled ref={getComponentRef(carouselRef, ref)} height={height}>
+            {withControls && !autoSlide && <Control onClick={handleSlideTo} roundControls={roundControls}/>}
+            <SlidesContainer>
                 {slides.map(renderSlide)}
-            </SlidersContainer>
-            {/* add indicators */}
+            </SlidesContainer>
+            {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex}/> }
+
         </CarouselStyled>
     )
 

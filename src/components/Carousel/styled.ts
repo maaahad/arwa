@@ -1,12 +1,15 @@
 import { styled, css } from "styled-components";
 
 
-export const CarouselStyled = styled.div`
+export const CarouselStyled = styled.div<{height: number}>`
     position: relative;
-    height: 200px;
-    border: 1px solid red;
+    overflow: hidden; 
+    ${({theme: {shapes}, height}) => css`
+        border-radius: ${shapes.borderRadius.sm};
+        height: ${height}px;
+    `}
 `
-// TODO: a util for centerd by flex (centerize)
+
 export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?: boolean}>`
     cursor: pointer;
     position: absolute;
@@ -41,19 +44,41 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
 
 `
 
-export const SlidersContainer = styled.div`
-    width: 100%;
+export const SlidesContainer = styled.div`
     height: 100%;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 100%;
-    grid-auto-rows: 100%;
-    overflow-x: scroll;
-    gap: 80px;
-    & > * {
-        border: 1px solid yellow;
-        width:30%;
+    overflow-x: hidden;
+`
+
+export const Slide = styled.div`
+     & > * {
         height: 100%;
-        background-color: green;
     }
+`
+
+export const IndicatorsStyled = styled.div`
+    position: absolute;
+    bottom: 16px; // Should come from configuration
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+`
+
+export const IndicatorDot = styled.button<{selected?: boolean}>`
+    all: unset;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all .3s ease-in;
+    ${({theme:{colors}, selected = false}) => selected ? css`
+        opacity: .4;
+        background-color: ${colors.background};
+    ` : css`
+        background-color: ${colors.background};
+    `}
 `
