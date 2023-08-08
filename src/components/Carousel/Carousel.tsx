@@ -4,6 +4,9 @@ import { ChevronLeft, ChevronRight } from "../../styles/iconography";
 import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 
+
+type SlideDirection = 'left' | 'right'
+
 type Props = {
     withControls?: boolean
     roundControls?: boolean
@@ -13,17 +16,21 @@ type Props = {
     autoSlide?: boolean
     autoSlideInterval?: number 
     withIndicators?: boolean
+    loop?: boolean
 }
 
 type ControlProps = {
-    onClick: (slideTo: 'left' | 'right') => void
+    onClick: (slideTo: SlideDirection) => void
     roundControls?: boolean
+    disabledRightControl?: boolean
+    disabledLeftControl?: boolean
 }
 
 type ControlButtonProps = {
-    slot: 'left' | 'right'
+    slot: SlideDirection
     round?: boolean
-    onClick: (slideTo: 'left' | 'right') => void
+    onClick: (slideTo: SlideDirection) => void
+    disabled?: boolean
 }
 
 type IndicatorsProps = {
@@ -32,22 +39,19 @@ type IndicatorsProps = {
     onSlide: (to: number) => void
 }
 
-// TODO: next Indicators (dots), can be used in case single per show only
-
-// TODO: build on top of IconButton
-const ControlButton: React.FC<ControlButtonProps> = ({slot, round = false, onClick}) => {
+const ControlButton: React.FC<ControlButtonProps> = ({slot, round = false, onClick, disabled = false}) => {
     return (
-        <ControlButtonStyled slot={slot} round={round} onClick={() => onClick(slot)}>
+        <ControlButtonStyled slot={slot} round={round} onClick={() => onClick(slot)} disabled={disabled}>
             {slot === 'left' ? <ChevronLeft/>: <ChevronRight/>}
         </ControlButtonStyled>
     )
 }
 
-const Control: React.FC<ControlProps> = ({onClick, roundControls = false}) => {
+const Control: React.FC<ControlProps> = ({onClick, roundControls = false, disabledRightControl = false, disabledLeftControl = false}) => {
     return (
         <>
-            <ControlButton onClick={onClick} slot="left" round={roundControls}/>
-            <ControlButton onClick={onClick} slot="right" round={roundControls}/>
+            <ControlButton onClick={onClick} slot="left" round={roundControls} disabled={disabledLeftControl}/>
+            <ControlButton onClick={onClick} slot="right" round={roundControls} disabled={disabledRightControl}/>
         </>
     )
 }
@@ -73,17 +77,27 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     slides = [], 
     withControls = true, 
     roundControls = false,
-    withIndicators = false
+    withIndicators = false,
+    loop = false,
 }, ref) : ReactNode=> {
     const carouselRef = useRef<HTMLDivElement>(null)
-    const [currentIndex, setCurrentIndex] = useState<number>(forceSlideTo)
     const slidesLength = slides.length
-    
+    const [currentIndex, setCurrentIndex] = useState<number>(forceSlideTo < slidesLength ? forceSlideTo : 0)
     const slidesRef = useRef<RefObject<HTMLDivElement>[]>(
         Array.from({length: slides.length}, () => createRef<HTMLDivElement>())
     )
 
-    const handleSlideTo = (slideTo: 'left' | 'right') => {
+    
+    const isControlDisabled = (controlPosition: SlideDirection) => {
+        if(!loop) {
+            if(controlPosition === 'left') return currentIndex === 0
+            else return currentIndex === slidesLength - 1
+        }
+
+        return false
+    }
+
+    const handleSlideTo = (slideTo: SlideDirection) => {
         if(slideTo === 'left') {
             currentIndex === 0 ? setCurrentIndex(slidesLength - 1) : setCurrentIndex(currentIndex - 1)
         } else {
@@ -112,7 +126,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
 
     return (
         <CarouselStyled ref={getComponentRef(carouselRef, ref)} height={height}>
-            {withControls && !autoSlide && <Control onClick={handleSlideTo} roundControls={roundControls}/>}
+            {withControls && !autoSlide && <Control onClick={handleSlideTo} roundControls={roundControls} disabledRightControl={isControlDisabled('right')} disabledLeftControl={isControlDisabled('left')}/>}
             <SlidesContainer>
                 {slides.map(renderSlide)}
             </SlidesContainer>

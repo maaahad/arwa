@@ -10,11 +10,11 @@ export const CarouselStyled = styled.div<{height: number}>`
     `}
 `
 
-export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?: boolean}>`
+export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?: boolean, disabled?: boolean}>`
     cursor: pointer;
     position: absolute;
-    width: 32px; // Configured
-    height: 32px; // Configured
+    width: 32px; // TODO: Configured
+    height: 32px; // TODO: Configured
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
@@ -22,11 +22,11 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
     align-items: center;
     justify-content: center;
 
-    ${({slot, round = false, theme: {colors, shapes, shadows}}) => css`
+    ${({slot, round = false, disabled = false, theme: {colors, shapes, shadows}}) => css`
         border: 1px solid ${colors.border};
         border-radius: ${shapes.borderRadius.sm};
         box-shadow: ${shadows.xs};
-        transition: all .3s ease-in; // Should come from theme
+        transition: all .3s ease-in; // TODO: Should come from theme
         ${round && css`
             border-radius: 50%;
         `}
@@ -35,6 +35,11 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
             left: 0px;
         ` : css`
             right: 0px;
+        `}
+
+        ${disabled && css`
+            cursor: auto;
+            /* TODO: Fix style : DisabeldButton */
         `}
 
         &:hover {
@@ -71,6 +76,7 @@ export const IndicatorsStyled = styled.div`
 
 export const IndicatorDot = styled.button<{selected?: boolean}>`
     all: unset;
+    cursor: pointer;
     width: 8px;
     height: 8px;
     border-radius: 50%;

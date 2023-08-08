@@ -41,7 +41,8 @@ RoundControls.args = {
 export const AutoSlide = Template.bind({})
 AutoSlide.args = {
     autoSlide: true, 
-    height: 400
+    height: 400,
+    withIndicators: true
 }
 
 export const WithIndicators = Template.bind({})
@@ -49,3 +50,23 @@ WithIndicators.args = {
     height: 400,
     withIndicators : true
 }
+
+
+export const ForceSlideTo = Template.bind({})
+
+ForceSlideTo.args = {
+    height: 400,
+    withIndicators : true,
+    forceSlideTo: 3
+}
+
+export const Loop = Template.bind({})
+
+Loop.args = {
+    height: 400,
+    withIndicators : true,
+    loop: true
+}
+
+
+
