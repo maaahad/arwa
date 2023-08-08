@@ -49,12 +49,15 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
 
 `
 
-export const SlidesContainer = styled.div`
+export const SlidesContainer = styled.div<{scrollable?: boolean}>`
     height: 100%;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     overflow-x: hidden;
+    ${({scrollable}) => css`
+        overflow-x: ${scrollable ? 'auto' : 'hidden'};
+    `}
 `
 
 export const Slide = styled.div`
@@ -81,10 +84,7 @@ export const IndicatorDot = styled.button<{selected?: boolean}>`
     height: 8px;
     border-radius: 50%;
     transition: all .3s ease-in;
-    ${({theme:{colors}, selected = false}) => selected ? css`
-        opacity: .4;
-        background-color: ${colors.background};
-    ` : css`
-        background-color: ${colors.background};
+    ${({theme:{colors}, selected = false}) => css`
+        background-color: ${selected ? colors.accent.primary : colors.surface};
     `}
 `

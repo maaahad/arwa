@@ -17,6 +17,7 @@ type Props = {
     autoSlideInterval?: number 
     withIndicators?: boolean
     loop?: boolean
+    scrollable?: boolean
 }
 
 type ControlProps = {
@@ -79,6 +80,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     roundControls = false,
     withIndicators = false,
     loop = false,
+    scrollable = false, 
 }, ref) : ReactNode=> {
     const carouselRef = useRef<HTMLDivElement>(null)
     const slidesLength = slides.length
@@ -127,7 +129,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     return (
         <CarouselStyled ref={getComponentRef(carouselRef, ref)} height={height}>
             {withControls && !autoSlide && <Control onClick={handleSlideTo} roundControls={roundControls} disabledRightControl={isControlDisabled('right')} disabledLeftControl={isControlDisabled('left')}/>}
-            <SlidesContainer>
+            <SlidesContainer scrollable={scrollable}>
                 {slides.map(renderSlide)}
             </SlidesContainer>
             {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex}/> }

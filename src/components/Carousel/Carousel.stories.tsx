@@ -14,7 +14,6 @@ const style = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // height: '100%'
 }
 
 const Template: StoryFn<typeof Carousel> = (args) => {
@@ -30,6 +29,12 @@ const Template: StoryFn<typeof Carousel> = (args) => {
 export const Default  = Template.bind({})
 Default.args = {
     height: 400
+}
+
+export const Scrollable  = Template.bind({})
+Scrollable.args = {
+    height: 400,
+    scrollable: true
 }
 
 export const RoundControls = Template.bind({})
