@@ -17,7 +17,7 @@ const style = {
 }
 
 const Template: StoryFn<typeof Carousel> = (args) => {
-    const slides = Array.from({length: 5}, (_v, index) => (
+    const slides = Array.from({length: 15}, (_v, index) => (
         <div key={index} style={style}>{`Slide ${index}`}</div>
     ))
 

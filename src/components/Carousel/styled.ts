@@ -66,22 +66,29 @@ export const Slide = styled.div`
     }
 `
 
-export const IndicatorsStyled = styled.div`
+export const IndicatorsStyled = styled.div<{translate: number}>`
     position: absolute;
     bottom: 16px; // Should come from configuration
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    max-width: 56px !important;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 8px;
+    grid-auto-rows: 8px;
+    overflow-x: hidden;
     gap: 4px;
+
+    ${({translate}) => css`
+        transform: translateX(${translate}px);
+    `}
 `
 
 export const IndicatorDot = styled.button<{selected?: boolean}>`
     all: unset;
     cursor: pointer;
-    width: 8px;
-    height: 8px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     transition: all .3s ease-in;
     ${({theme:{colors}, selected = false}) => css`

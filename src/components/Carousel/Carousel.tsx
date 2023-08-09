@@ -5,7 +5,7 @@ import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 
 
-type SlideDirection = 'left' | 'right'
+type Direction = 'left' | 'right'
 
 type Props = {
     withControls?: boolean
@@ -21,16 +21,16 @@ type Props = {
 }
 
 type ControlProps = {
-    onClick: (slideTo: SlideDirection) => void
+    onClick: (slideTo: Direction) => void
     roundControls?: boolean
     disabledRightControl?: boolean
     disabledLeftControl?: boolean
 }
 
 type ControlButtonProps = {
-    slot: SlideDirection
+    slot: Direction
     round?: boolean
-    onClick: (slideTo: SlideDirection) => void
+    onClick: (slideTo: Direction) => void
     disabled?: boolean
 }
 
@@ -58,8 +58,19 @@ const Control: React.FC<ControlProps> = ({onClick, roundControls = false, disabl
 }
 
 const Indicators:React.FC<IndicatorsProps> = ({selectedIndex, total, onSlide}) => {
+    const ref = useRef<number>(selectedIndex)
+    const [translate, setTranslate] = useState<number>(0)
+
+    useEffect(() => {
+        const mult = ref.current - selectedIndex
+        if(total > 5 && selectedIndex > 2 && selectedIndex + 2 < total) setTranslate(translate  => translate + mult * 4)
+        ref.current = selectedIndex
+    }, [selectedIndex, ref])
+
+    console.log(translate, ref.current)
+
     return (
-        <IndicatorsStyled>
+        <IndicatorsStyled translate={translate}>
             {
                 Array.from({length: total}, (_v, index) => (
                     <IndicatorDot selected={index === selectedIndex} onClick={() => onSlide(index)}/>
@@ -90,7 +101,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     )
 
     
-    const isControlDisabled = (controlPosition: SlideDirection) => {
+    const isControlDisabled = (controlPosition: Direction) => {
         if(!loop) {
             if(controlPosition === 'left') return currentIndex === 0
             else return currentIndex === slidesLength - 1
@@ -99,7 +110,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
         return false
     }
 
-    const handleSlideTo = (slideTo: SlideDirection) => {
+    const handleSlideTo = (slideTo: Direction) => {
         if(slideTo === 'left') {
             currentIndex === 0 ? setCurrentIndex(slidesLength - 1) : setCurrentIndex(currentIndex - 1)
         } else {
