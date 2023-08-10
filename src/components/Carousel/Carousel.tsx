@@ -63,19 +63,17 @@ const Indicators:React.FC<IndicatorsProps> = ({selectedIndex, total, onSlide}) =
 
     useEffect(() => {
         const mult = ref.current - selectedIndex
-        if(total > 5 && selectedIndex > 2 && selectedIndex + 2 < total) setTranslate(translate  => translate + mult * 4)
+        if(total > 5 && selectedIndex > 2 && selectedIndex + 2 < total) setTranslate(translate  => translate + mult * 12)
         ref.current = selectedIndex
     }, [selectedIndex, ref])
 
-    console.log(translate, ref.current)
-
     return (
-        <IndicatorsStyled translate={translate}>
-            {
-                Array.from({length: total}, (_v, index) => (
-                    <IndicatorDot selected={index === selectedIndex} onClick={() => onSlide(index)}/>
-                ))
-            }
+        <IndicatorsStyled >
+                {
+                    Array.from({length: total}, (_v, index) => (
+                        <IndicatorDot translate={translate} selected={index === selectedIndex} onClick={() => onSlide(index)}/>
+                    ))
+                }
         </IndicatorsStyled>
     )
 }

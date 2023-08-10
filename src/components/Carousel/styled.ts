@@ -66,7 +66,7 @@ export const Slide = styled.div`
     }
 `
 
-export const IndicatorsStyled = styled.div<{translate: number}>`
+export const IndicatorsStyled = styled.div`
     position: absolute;
     bottom: 16px; // Should come from configuration
     left: 50%;
@@ -78,20 +78,17 @@ export const IndicatorsStyled = styled.div<{translate: number}>`
     grid-auto-rows: 8px;
     overflow-x: hidden;
     gap: 4px;
-
-    ${({translate}) => css`
-        transform: translateX(${translate}px);
-    `}
 `
 
-export const IndicatorDot = styled.button<{selected?: boolean}>`
+export const IndicatorDot = styled.button<{selected?: boolean; translate: number}>`
     all: unset;
     cursor: pointer;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     transition: all .3s ease-in;
-    ${({theme:{colors}, selected = false}) => css`
+    ${({theme:{colors}, selected = false, translate}) => css`
         background-color: ${selected ? colors.accent.primary : colors.surface};
+        transform: translateX(${translate}px);
     `}
 `
