@@ -66,18 +66,20 @@ export const Slide = styled.div`
     }
 `
 
-export const IndicatorsStyled = styled.div`
+export const IndicatorsStyled = styled.div<{width: number; size: number; gap: number}>`
     position: absolute;
     bottom: 16px; // Should come from configuration
     left: 50%;
     transform: translateX(-50%);
-    max-width: 56px !important;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 8px;
-    grid-auto-rows: 8px;
     overflow-x: hidden;
-    gap: 4px;
+    ${({width, size, gap}) => css`
+        max-width : ${width}px;
+        gap: ${gap}px;
+        grid-auto-columns: ${size}px;
+        grid-auto-rows: ${size}px;
+    `}
 `
 
 export const IndicatorDot = styled.button<{selected?: boolean; translate: number}>`

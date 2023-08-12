@@ -5,6 +5,15 @@ import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 
 
+type OddNumber<
+    X extends number,
+    Y extends unknown[] = [1],
+    Z extends number = never
+> = Y['length'] extends X
+    ? Z | Y['length']
+    : OddNumber<X, [1, 1, ...Y], Z | Y['length']>
+
+
 type Direction = 'left' | 'right'
 
 type Props = {
@@ -35,9 +44,10 @@ type ControlButtonProps = {
 }
 
 type IndicatorsProps = {
-    selectedIndex: number, 
+    selectedIndex: number
     total: number
     onSlide: (to: number) => void
+    maxIndicators?: OddNumber<11>
 }
 
 const ControlButton: React.FC<ControlButtonProps> = ({slot, round = false, onClick, disabled = false}) => {
@@ -48,6 +58,7 @@ const ControlButton: React.FC<ControlButtonProps> = ({slot, round = false, onCli
     )
 }
 
+// TODO: ForwardRef
 const Control: React.FC<ControlProps> = ({onClick, roundControls = false, disabledRightControl = false, disabledLeftControl = false}) => {
     return (
         <>
@@ -57,18 +68,32 @@ const Control: React.FC<ControlProps> = ({onClick, roundControls = false, disabl
     )
 }
 
-const Indicators:React.FC<IndicatorsProps> = ({selectedIndex, total, onSlide}) => {
+// TODO: ForwardRef
+const Indicators:React.FC<IndicatorsProps> = ({selectedIndex, total, onSlide, maxIndicators = 5}) => {
     const ref = useRef<number>(selectedIndex)
     const [translate, setTranslate] = useState<number>(0)
 
+    const max = Math.min(total, maxIndicators)
+    const middleNumber = Math.ceil(max / 2)
+    const gap = 4
+    const size = 8
+    const indicatorsWidth = max * size + (max - 1) * gap
+
     useEffect(() => {
-        const mult = ref.current - selectedIndex
-        if(total > 5 && selectedIndex > 2 && selectedIndex + 2 < total) setTranslate(translate  => translate + mult * 12)
-        ref.current = selectedIndex
-    }, [selectedIndex, ref])
+        if(selectedIndex >= 0 && selectedIndex < total) {
+            const mult = ref.current - selectedIndex
+            // TODO: simplify + cover edge cases!!!
+            if(total > max && selectedIndex + (mult > 0 ? 1 : 0) > middleNumber && selectedIndex + middleNumber + (mult > 0 ? 1 : 0) < total) {
+                setTranslate(translate + mult * (size + gap))
+            }
+            ref.current = selectedIndex
+        }
+
+    }, [selectedIndex, ref, translate])
+
 
     return (
-        <IndicatorsStyled >
+        <IndicatorsStyled size={size} width={indicatorsWidth} gap={gap}>
                 {
                     Array.from({length: total}, (_v, index) => (
                         <IndicatorDot translate={translate} selected={index === selectedIndex} onClick={() => onSlide(index)}/>
@@ -141,7 +166,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
             <SlidesContainer scrollable={scrollable}>
                 {slides.map(renderSlide)}
             </SlidesContainer>
-            {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex}/> }
+            {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex} maxIndicators={3}/> }
 
         </CarouselStyled>
     )
