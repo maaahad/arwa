@@ -42,7 +42,7 @@ const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({
     expand = false, 
     disabled = false, 
     outside = false,
-    toggleIcon = <Icons.DownArrow/>}
+    toggleIcon = <Icons.ChevronDown/>}
 ) => {
     return (
         <AccordionItemStyled expand={expand} outside={outside}>

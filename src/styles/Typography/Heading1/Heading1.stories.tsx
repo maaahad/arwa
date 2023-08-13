@@ -6,7 +6,7 @@ import { Meta, StoryFn } from "@storybook/react";
 
 
 export default {
-    title: "Component/Typography",
+    title: "Typography",
     component: Heading1, 
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}> <Story /></ArwaThemeProvider>]
 

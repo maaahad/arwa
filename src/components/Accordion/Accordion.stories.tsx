@@ -4,7 +4,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import ArwaThemeProvider, {Theme} from "../../styles/themes";
 
 export default {
-    title: 'Component/Accordion', 
+    title: 'Components/Accordion', 
     component: Accordion, 
     decorators: [Story => <ArwaThemeProvider theme={Theme.Light}><Story /></ArwaThemeProvider>]
 } as Meta<typeof Accordion>
