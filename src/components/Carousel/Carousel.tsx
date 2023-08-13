@@ -3,15 +3,7 @@ import { CarouselStyled, ControlButtonStyled, SlidesContainer, Slide, Indicators
 import { ChevronLeft, ChevronRight } from "../../styles/iconography";
 import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
-
-
-type OddNumber<
-    X extends number,
-    Y extends unknown[] = [1],
-    Z extends number = never
-> = Y['length'] extends X
-    ? Z | Y['length']
-    : OddNumber<X, [1, 1, ...Y], Z | Y['length']>
+import type { OddNumber } from "../../utils/types";
 
 
 type Direction = 'left' | 'right'
@@ -27,6 +19,7 @@ type Props = {
     withIndicators?: boolean
     loop?: boolean
     scrollable?: boolean
+    maxIndicators?: OddNumber<11>
 }
 
 type ControlProps = {
@@ -115,6 +108,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
     withIndicators = false,
     loop = false,
     scrollable = false, 
+    maxIndicators = 5,
 }, ref) : ReactNode=> {
     const carouselRef = useRef<HTMLDivElement>(null)
     const slidesLength = slides.length
@@ -166,7 +160,7 @@ const Carousel: React.FC<Props> = React.forwardRef<HTMLDivElement, PropsWithRef<
             <SlidesContainer scrollable={scrollable}>
                 {slides.map(renderSlide)}
             </SlidesContainer>
-            {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex} maxIndicators={3}/> }
+            {withIndicators && <Indicators selectedIndex={currentIndex} total={slidesLength} onSlide={setCurrentIndex} maxIndicators={maxIndicators}/> }
 
         </CarouselStyled>
     )

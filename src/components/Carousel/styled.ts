@@ -1,4 +1,5 @@
 import { styled, css } from "styled-components";
+import { ColorTokens } from "../../tokens";
 
 
 export const CarouselStyled = styled.div<{height: number}>`
@@ -38,12 +39,12 @@ export const ControlButtonStyled = styled.button<{slot: 'left' | 'right', round?
         `}
 
         ${disabled && css`
-            cursor: auto;
-            /* TODO: Fix style : DisabeldButton */
+            cursor: not-allowed;
+            background-color: ${colors.background};
         `}
 
         &:hover {
-            background-color: ${colors.background};
+            background-color: ${colors.background };
         }
     `}
 

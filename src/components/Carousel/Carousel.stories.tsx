@@ -73,5 +73,11 @@ Loop.args = {
     loop: true
 }
 
+export const MaxIndicators = Template.bind({})
 
+MaxIndicators.args = {
+    height: 400,
+    withIndicators: true,
+    maxIndicators: 7
+}
 
