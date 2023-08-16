@@ -4,6 +4,7 @@ import ArwaThemeProvider from './ArwaThemeProvider'
 import Shadows from "../shadows"
 import Typography from "../typography"
 import Shapes from "../shapes"
+import { Breakpoints } from "../breakpoints"
 
 
 // TODO: need some util type for 
@@ -15,7 +16,8 @@ const getTheme = (theme: 'Light' | 'Dark') : DefaultTheme => {
         colors: Colors[theme],
         shadows: Shadows[theme],
         typography: Typography,
-        shapes: Shapes
+        shapes: Shapes,
+        breakpoints: Breakpoints
     }
 }
 
