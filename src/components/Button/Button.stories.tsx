@@ -1,24 +1,31 @@
 import React from "react";
 import Button from "./Button";
 import { Meta, StoryFn } from "@storybook/react";
-import ArwaThemeProvider, {Theme} from "../../styles/themes";
+import ArwaThemeProvider, { Theme } from "../../styles/themes";
 
 export default {
-    title: "Components/Button",
-    component: Button,
-    decorators: [Story => <ArwaThemeProvider theme={Theme.Light}> <Story /></ArwaThemeProvider>]
-} as Meta<typeof Button>
+  title: "Components/Button",
+  component: Button,
+  decorators: [
+    (Story) => (
+      <ArwaThemeProvider theme={Theme.Light}>
+        {" "}
+        <Story />
+      </ArwaThemeProvider>
+    ),
+  ],
+} as Meta<typeof Button>;
 
-const Template: StoryFn<typeof Button> = (args) => <Button {...args}/>
+const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({})
+export const Primary = Template.bind({});
 
 Primary.args = {
-    label: "Primary Button"
-}
+  label: "Primary Button",
+};
 
-export const Secondary = Template.bind({})
+export const Secondary = Template.bind({});
 Secondary.args = {
-    label: "Secondary Button",
-    variant: "secondary"
-}
+  label: "Secondary Button",
+  variant: "secondary",
+};
