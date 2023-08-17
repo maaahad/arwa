@@ -5,7 +5,7 @@ import { FontTokens } from '../../tokens'
 import { ArwaShadows } from '../shadows/types'
 import { ArwaTypography } from '../typography/types'
 import { ArwaShapes } from '../shapes/types'
-import { ArwaBreakpoints } from '../breakpoints/types'
+import { ArwaBreakpoints, ArwaDevice } from '../breakpoints/types'
 
 
 declare module 'styled-components' {
@@ -24,6 +24,7 @@ declare module 'styled-components' {
         typography: ArwaTypography
         shapes: ArwaShapes
         breakpoints: ArwaBreakpoints
+        device: ArwaDevice
 
         // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
         // breakpoints
