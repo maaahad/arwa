@@ -4,7 +4,6 @@ import React, {
   ReactElement,
   useState,
   cloneElement,
-  ReactNode,
 } from "react";
 import {
   AccordionStyled,

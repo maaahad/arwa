@@ -9,12 +9,19 @@ describe("responsiveness", () => {
   });
 
   test("should get correct responsive CSS decleration", () => {
-    const got = applyResponsiveness({
+    const got1 = applyResponsiveness({
       theme: Theme.Light,
       width: [10, 20, 30, 40, 50],
       height: ["100px", 500, "100%"],
     });
 
-    expect(got).toMatchSnapshot();
+    const got2 = applyResponsiveness({
+      theme: Theme.Light,
+      width: undefined,
+      height: ["100px", 500, "100%"],
+    });
+
+    expect(got1).toMatchSnapshot();
+    expect(got2).toMatchSnapshot();
   });
 });

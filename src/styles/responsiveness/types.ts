@@ -5,18 +5,18 @@ export enum CSSProperty {
   width = "width",
   height = "height",
 }
-export type Device = "xm" | "sm" | "md" | "lg" | "xl";
+export type Device = "xm" | "sm" | "md" | "lg" | "xl"; // TODo: move to right place
 export type ResponsiveProp = "width" | "height";
-export type ResponsiveDecleration = {
-  [key in ResponsiveProp]?:
-    | number
-    | string
-    | Tuple<string | number, 1 | 2 | 3 | 4 | 5>;
+export type ResponsivePropsValue = undefined | number
+| string
+| Tuple<string | number, 1 | 2 | 3 | 4 | 5>; // FIXME: 1 | 2 | 3 | 4 | 5 can be deduce using Device type
+
+export type ResponsivePropDecleration = {
+  [key in ResponsiveProp]?: ResponsivePropsValue
 };
 
-export type ResponsiveCSSDecleration = Record<
-  string,
-  string | Record<string, string>
+export type ResponsiveCSSDecleration = Partial<
+  Record<`${CSSProperty}`, string>
 >;
-// FIXME: fix the type
-// export type ResponsiveCSSDecleration = Record<`${CSSProperty}` | `${BreakpointTokens.Breakpoints}`, string | Record<`${CSSProperty}`, string>>
+export type ResponsiveCSSDeclerations = ResponsiveCSSDecleration &
+  Partial<Record<`${BreakpointTokens.Breakpoints}`, ResponsiveCSSDecleration>>;

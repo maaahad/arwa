@@ -20,3 +20,15 @@ exports[`responsiveness should get correct responsive CSS decleration 1`] = `
   "width": "10px",
 }
 `;
+
+exports[`responsiveness should get correct responsive CSS decleration 2`] = `
+{
+  "@media screen and (width >= 575px)": {
+    "height": "500px",
+  },
+  "@media screen and (width >=768px)": {
+    "height": "100%",
+  },
+  "height": "100px",
+}
+`;

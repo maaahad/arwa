@@ -1,8 +1,8 @@
 import { DefaultTheme } from "styled-components";
 import {
-  ResponsiveDecleration,
+  ResponsivePropDecleration,
   CSSProperty,
-  ResponsiveCSSDecleration,
+  ResponsiveCSSDeclerations,
 } from "./types";
 
 export const getResponsiveCSSPropertyValue = (
@@ -17,11 +17,14 @@ export const applyResponsiveness = ({
   ...responsiveProps
 }: {
   theme: DefaultTheme;
-} & ResponsiveDecleration) => {
+} & ResponsivePropDecleration) => {
   const { breakpoints, device } = theme;
 
   return Object.entries(responsiveProps).reduce((acc, cur) => {
     const [key, value] = cur;
+
+    if(!value) return acc
+
     const cssProperty = CSSProperty[key as keyof typeof CSSProperty];
 
     if (Array.isArray(value)) {
@@ -47,5 +50,5 @@ export const applyResponsiveness = ({
     }
 
     return acc;
-  }, {} as ResponsiveCSSDecleration);
+  }, {} as ResponsiveCSSDeclerations);
 };

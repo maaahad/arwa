@@ -1,12 +1,13 @@
 import { styled, css } from "styled-components";
-import { ColorTokens } from "../../tokens";
+import { applyResponsiveness } from "../../styles/responsiveness";
+import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
-export const CarouselStyled = styled.div<{ height: number }>`
+export const CarouselStyled = styled.div<ResponsivePropDecleration>`
   position: relative;
   overflow: hidden;
-  ${({ theme: { shapes }, height }) => css`
+  ${applyResponsiveness}
+  ${({ theme: { shapes } }) => css`
     border-radius: ${shapes.borderRadius.sm};
-    height: ${height}px;
   `}
 `;
 

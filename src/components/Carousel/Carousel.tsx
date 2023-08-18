@@ -20,15 +20,16 @@ import { ChevronLeft, ChevronRight } from "../../styles/iconography";
 import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 import type { OddNumber } from "../../utils/types";
+import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
 type Direction = "left" | "right";
 
-type Props = {
+type Props = ResponsivePropDecleration & {
   withControls?: boolean;
   roundControls?: boolean;
   slides: ReactElement[];
   forceSlideTo?: number;
-  height: number;
+  // height: number;
   autoSlide?: boolean;
   autoSlideInterval?: number;
   withIndicators?: boolean;
