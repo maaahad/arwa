@@ -1,7 +1,11 @@
-import React, { ReactElement,  PropsWithChildren} from "react";
-import { DefaultTheme, createGlobalStyle, ThemeProvider, css } from "styled-components";
+import React, { ReactElement, PropsWithChildren } from "react";
+import {
+  DefaultTheme,
+  createGlobalStyle,
+  ThemeProvider,
+  css,
+} from "styled-components";
 import { FontTokens } from "../../tokens";
-
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -15,22 +19,24 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-    ${({theme}) => {
-        return css`
-            body {
-                color: ${theme.colors.text.body.primary};
-            }
-        `
+    ${({ theme }) => {
+      return css`
+        body {
+          color: ${theme.colors.text.body.primary};
+        }
+      `;
     }}
-` 
+`;
 
-const ArwaThemeProvider: React.FC<PropsWithChildren<{theme: DefaultTheme}>> = ({children, theme}) : ReactElement => {
-    return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            {children}
-        </ThemeProvider>
-    )
-}
+const ArwaThemeProvider: React.FC<
+  PropsWithChildren<{ theme: DefaultTheme }>
+> = ({ children, theme }): ReactElement => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      {children}
+    </ThemeProvider>
+  );
+};
 
-export default ArwaThemeProvider
+export default ArwaThemeProvider;
