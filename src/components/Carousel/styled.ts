@@ -1,11 +1,11 @@
 import { styled, css } from "styled-components";
-import { applyResponsiveness } from "../../styles/responsiveness";
+import { applyResponsiveCSS } from "../../styles/responsiveness";
 import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
 export const CarouselStyled = styled.div<ResponsivePropDecleration>`
   position: relative;
   overflow: hidden;
-  ${applyResponsiveness}
+  ${applyResponsiveCSS}
   ${({ theme: { shapes } }) => css`
     border-radius: ${shapes.borderRadius.sm};
   `}
