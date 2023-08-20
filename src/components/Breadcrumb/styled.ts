@@ -1,10 +1,33 @@
-
-import { styled } from "styled-components"
+import { styled, css } from "styled-components";
 
 export const BreadcrumbStyled = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+`;
+
+export const BreadcrumbItemStyled = styled.div<{ active?: boolean }>`
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid red;
+  /* TODO: fix typography */
+  ${({
+    theme: {
+      colors,
+      typography: { fontWeight },
+    },
+    active = false,
+  }) => css`
+    color: ${active ? colors.text.body.primary : colors.text.body.secondary};
+    ${active &&
+    css`
+      font-weight: ${fontWeight.bold};
+    `}
+  `}
+`;

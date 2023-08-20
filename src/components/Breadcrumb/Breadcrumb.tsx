@@ -1,46 +1,46 @@
-import React, {ReactElement} from "react";
-import { BreadcrumbStyled } from "./styled";
-
-type Crumb = {
-    label: string;
-    icon?: ReactElement;
-    path: string;
-}
-
+import React, { ReactNode, useState } from "react";
+import { BreadcrumbStyled, BreadcrumbItemStyled } from "./styled";
+import { ArrowRight } from "../../styles/iconography";
+import { useTheme } from "styled-components";
 
 type Props = {
-    breadcrumbs: Crumb[];
-    baseUrl?: string;
-}
+  breadcrumbs: ReactNode[];
+  separator?: ReactNode;
+  activeIndex?: number;
+};
 
-const BreadcrumbItem: React.FC<{breadcrumb: Crumb}> = ({breadcrumb}) => {
-    const {label} = breadcrumb
-    return (
-        <div>
-            {/* TODO: icon */}
-            <p>{label}</p>
-        </div>
-    )
-}
+type BreadcrumbItemProps = {
+  breadcrumb: ReactNode;
+  active?: boolean;
+};
 
-const Breadcrumb: React.FC<Props> = ({
-    breadcrumbs = [],
+const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
+  breadcrumb,
+  active = false,
 }) => {
+  return (
+    <BreadcrumbItemStyled active={active}>{breadcrumb}</BreadcrumbItemStyled>
+  );
+};
 
-   const breadcrumbsLength = breadcrumbs.length
+const Breadcrumb: React.FC<Props> = ({ breadcrumbs = [], separator }) => {
+  //    TODO: may be separate configuration file
+  const { colors } = useTheme();
+  const breadcrumbsLength = breadcrumbs.length;
+  const separatorElement = separator ?? <ArrowRight color={colors.icon} />;
 
-  if(!breadcrumbs.length) return null
-  
+  if (!breadcrumbs.length) return null;
+
   return (
     <BreadcrumbStyled>
-        {breadcrumbs.map((breadcrumb, index) => (
-            <>
-                <BreadcrumbItem breadcrumb={breadcrumb}  key={breadcrumb.label}/>
-                {index < breadcrumbsLength - 1 && <div>→</div>}
-            </>
-        ))}
+      {breadcrumbs.map((breadcrumb, index) => (
+        <>
+          <BreadcrumbItem breadcrumb={breadcrumb} key={`${index}`} />
+          {index < breadcrumbsLength - 1 && separatorElement}
+        </>
+      ))}
     </BreadcrumbStyled>
-  )
+  );
 };
 
 export default Breadcrumb;
