@@ -12,7 +12,7 @@ export const getResponsiveCSSPropertyValue = (
   return value;
 };
 
-export const applyResponsiveness = ({
+export const applyResponsiveCSS = ({
   theme,
   ...responsiveProps
 }: {
@@ -23,7 +23,7 @@ export const applyResponsiveness = ({
   return Object.entries(responsiveProps).reduce((acc, cur) => {
     const [key, value] = cur;
 
-    if(!value) return acc
+    if (!value) return acc;
 
     const cssProperty = CSSProperty[key as keyof typeof CSSProperty];
 

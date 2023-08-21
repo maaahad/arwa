@@ -7,8 +7,13 @@ type T = {
   // letterSpacing: FontTokens.LetterSpacing // FIXME: should be fixed later
 };
 
+export type ArwaFontWeight = {
+  [key in keyof typeof FontTokens.FontWeight]: FontTokens.FontWeight;
+};
+
 export type ArwaTypography = {
   h1: T;
+  fontWeight: ArwaFontWeight;
 };
 
 export type TypographySize =

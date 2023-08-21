@@ -11,6 +11,11 @@ const Typography: ArwaTypography = {
     fontWeight: FontTokens.FontWeight.semiBold,
     lineHeight: FontTokens.LineHeight.lh1_5,
   },
+  fontWeight: {
+    regular: FontTokens.FontWeight.regular,
+    semiBold: FontTokens.FontWeight.semiBold,
+    bold: FontTokens.FontWeight.bold,
+  },
 };
 
 export default Typography;

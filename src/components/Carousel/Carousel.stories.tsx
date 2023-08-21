@@ -84,7 +84,7 @@ MaxIndicators.args = {
   maxIndicators: 7,
 };
 
-export const ResponsiveHeight = Template.bind({})
+export const ResponsiveHeight = Template.bind({});
 ResponsiveHeight.args = {
-  height: [200, 300, 400, 500, 600]
-}
+  height: [200, 300, 400, 500, 600],
+};
