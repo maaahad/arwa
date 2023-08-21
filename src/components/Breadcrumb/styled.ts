@@ -8,14 +8,14 @@ export const BreadcrumbStyled = styled.div`
   gap: 8px;
 `;
 
-export const BreadcrumbItemStyled = styled.div<{ active?: boolean }>`
+export const BreadcrumbItemStyled = styled.a<{ active?: boolean }>`
+  all: unset;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 4px;
   padding: 4px;
-  border: 1px solid red;
   /* TODO: fix typography */
   ${({
     theme: {

@@ -18,12 +18,14 @@ export default {
 
 const Template: StoryFn<typeof Breadcrumb> = (args) => {
   const breadcrumbs = [
-    <a href="">Page 1</a>,
-    <a href="">Page 2</a>,
-    <a href="">Page 3</a>,
+    { label: "Page 1", url: "/search", icon: <Icons.ChevronDown /> },
+    { label: "Page 2", url: "/webhp", icon: <Icons.ChevronDown /> },
+    { label: "Page 3", url: "/doodles" },
   ];
   return <Breadcrumb {...args} breadcrumbs={breadcrumbs} />;
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  baseUrl: "http://google.se",
+};
