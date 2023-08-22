@@ -60,7 +60,6 @@ const Breadcrumb: React.FC<Props> = ({
 
   if (!breadcrumbs.length) return null;
 
-  console.log(breadcrumbs.map(mapBreadcrumb));
 
   return (
     <BreadcrumbStyled>

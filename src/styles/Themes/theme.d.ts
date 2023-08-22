@@ -8,14 +8,6 @@ import { ArwaShapes } from "../shapes/types";
 import { ArwaBreakpoints, ArwaDevice } from "../breakpoints/types";
 
 declare module "styled-components" {
-  // FIXME: this might be move to typography
-  type Typography = {
-    fontSize: FontTokens.FontSize;
-    fontWeight: FontTokens.FontWeight;
-    lineHeight: FontTokens.LineHeight;
-    // letterSpacing: FontTokens.LetterSpacing // FIXME: should be fixed later
-  };
-
   export interface DefaultTheme {
     colors: ArwaColors; // rename it to palette???
     shadows: ArwaShadows;
