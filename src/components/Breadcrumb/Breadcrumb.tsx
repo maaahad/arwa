@@ -27,7 +27,7 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ breadcrumb }) => {
     // QUICK and ugly solution for testing purpose
     // TODO: fix with regexp (match: exact)
     // TODO: accept url matcher
-    
+
     if (!url) return setActive(false);
     setActive(window.location.href.includes(url));
   }, [url, setActive]);
@@ -59,7 +59,6 @@ const Breadcrumb: React.FC<Props> = ({
   };
 
   if (!breadcrumbs.length) return null;
-
 
   return (
     <BreadcrumbStyled>
