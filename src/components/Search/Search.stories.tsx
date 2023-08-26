@@ -16,19 +16,44 @@ export default {
 } as Meta<typeof Search>;
 
 const Template: StoryFn<typeof Search> = (args) => {
+  const testSearchOptions = [
+    "Muhammed ahad",
+    "Arwa",
+    "israt",
+    "bangladesh",
+    "Stockholm",
+    "Arwa Ahad",
+  ];
   const [value, setValue] = useState<string>("");
+  const [searchOptions, setSearchOptions] = useState<string[]>([]);
 
-  return <Search {...args} value={value} onChange={setValue} />;
+  const handleSerchOptionSelect = (searchOption?: string) => {
+    setValue("");
+    setSearchOptions([]);
+
+    // Note: Normally this result in redirection on client side
+  };
+
+  const handleValueChange = (value: string) => {
+    setValue(value);
+    // Note: search matching logic in implemented on Client side
+    setSearchOptions(
+      value ? testSearchOptions.filter((option) => option.includes(value)) : [],
+    );
+  };
+
+  return (
+    <Search
+      {...args}
+      searchOptions={searchOptions}
+      value={value}
+      onChange={handleValueChange}
+      onSelectSearchOption={handleSerchOptionSelect}
+    />
+  );
 };
 
 export const Default = Template.bind({});
 Default.args = {
   placeholder: "Type e.g Caming name",
-  searchResults: [],
-};
-
-export const WithSearchResults = Template.bind({});
-WithSearchResults.args = {
-  placeholder: "Type e.g Caming name",
-  searchResults: ["option 1", "option 2"],
 };

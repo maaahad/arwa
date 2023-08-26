@@ -1,6 +1,13 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 import { MagnifyingGlass } from "../../styles/iconography";
-import { InputContainer, LeftSlot, Input, CloseIcon } from "./styled";
+import {
+  InputContainer,
+  LeftSlot,
+  Input,
+  CloseIcon,
+  DropdownContainer,
+  DropdownItem,
+} from "./styled";
 import Close from "../../styles/iconography/Close";
 import { ColorTokens } from "../../tokens";
 
@@ -9,25 +16,51 @@ type Props = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  searchResults?: string[]; // TODO: might be with more option
+  searchOptions?: string[]; // TODO: may contain with more option  + cumtom renderer
+  onSelectSearchOption?: (option: string) => void;
+};
+
+type DropdownProps = Pick<Props, "searchOptions" | "onSelectSearchOption"> & {};
+
+const Dropdown: React.FC<DropdownProps> = ({
+  searchOptions = [],
+  onSelectSearchOption = () => {},
+}) => {
+  return (
+    <DropdownContainer>
+      {/* TODO: should be customizable */}
+      <DropdownItem selectable={false}>
+        Results: {searchOptions.length}
+      </DropdownItem>
+      {searchOptions.map((value, index) => (
+        <DropdownItem
+          onClick={() => onSelectSearchOption(value)}
+          key={`${index}_${value}`}
+        >
+          {value}
+        </DropdownItem>
+      ))}
+    </DropdownContainer>
+  );
 };
 
 // TODO: use ref
 const Search: React.FC<Props> = ({
   placeholder = "",
-  searchResults = [],
+  searchOptions = [],
   onChange,
   value,
+  onSelectSearchOption,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   const handleClear = () => {
-    onChange('')
-  }
+    onChange("");
+  };
 
-  const hasSearchResults = !!searchResults.length;
+  const hasSearchResults = !!searchOptions.length;
 
   return (
     <div>
@@ -42,16 +75,20 @@ const Search: React.FC<Props> = ({
         </LeftSlot>
         {/* TODO */}
         {/* May be replace with Cross icon */}
-        {/* Eventually will a IconButton */}
+        {/* Eventually will be a IconButton */}
         {value && (
           <CloseIcon onClick={handleClear}>
-            <Close size="lg" color={ColorTokens.Light.trunks}/>
+            <Close size="lg" color={ColorTokens.Light.trunks} />
           </CloseIcon>
         )}
-
       </InputContainer>
 
-      {hasSearchResults && <div>TODO: Search list dropdown</div>}
+      {hasSearchResults && (
+        <Dropdown
+          searchOptions={searchOptions}
+          onSelectSearchOption={onSelectSearchOption}
+        />
+      )}
     </div>
   );
 };
