@@ -1,7 +1,8 @@
 import React, { ChangeEventHandler } from "react";
 import { MagnifyingGlass } from "../../styles/iconography";
+import { InputContainer, LeftSlot, Input, CloseIcon } from "./styled";
+import Close from "../../styles/iconography/Close";
 import { ColorTokens } from "../../tokens";
-import { InputContainer, LeftSlot, Input } from "./styled";
 
 // TODO : separate compont for input
 type Props = {
@@ -21,6 +22,11 @@ const Search: React.FC<Props> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
+
+  const handleClear = () => {
+    onChange('')
+  }
+
   const hasSearchResults = !!searchResults.length;
 
   return (
@@ -35,10 +41,14 @@ const Search: React.FC<Props> = ({
           />
         </LeftSlot>
         {/* TODO */}
-        {/* This is obly when  value of Input is not empty*/}
         {/* May be replace with Cross icon */}
         {/* Eventually will a IconButton */}
-        <span>clear</span>
+        {value && (
+          <CloseIcon onClick={handleClear}>
+            <Close size="lg" color={ColorTokens.Light.trunks}/>
+          </CloseIcon>
+        )}
+
       </InputContainer>
 
       {hasSearchResults && <div>TODO: Search list dropdown</div>}

@@ -37,3 +37,8 @@ export const Input = styled.input`
   all: unset;
   flex: 1;
 `;
+
+
+export const CloseIcon = styled.div`
+  cursor: pointer;
+`
