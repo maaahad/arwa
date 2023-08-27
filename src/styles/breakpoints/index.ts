@@ -1,5 +1,5 @@
-import { BreakpointTokens } from "../../tokens";
-import { ArwaBreakpoints } from "./types";
+import { BreakpointTokens } from '../../tokens'
+import { type ArwaBreakpoints } from './types'
 
 export const Breakpoints: ArwaBreakpoints = {
   xs: BreakpointTokens.Breakpoints.xs,
@@ -10,6 +10,6 @@ export const Breakpoints: ArwaBreakpoints = {
   only: {
     sm: BreakpointTokens.Breakpoints.smOnly,
     md: BreakpointTokens.Breakpoints.mdOnly,
-    lg: BreakpointTokens.Breakpoints.lgOnly,
-  },
-};
+    lg: BreakpointTokens.Breakpoints.lgOnly
+  }
+}

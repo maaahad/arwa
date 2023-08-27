@@ -1,4 +1,4 @@
-import { styled, css } from "styled-components";
+import { styled, css } from 'styled-components'
 
 export const BreadcrumbStyled = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const BreadcrumbStyled = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-`;
+`
 
 export const BreadcrumbItemStyled = styled.a<{ active?: boolean }>`
   all: unset;
@@ -20,9 +20,9 @@ export const BreadcrumbItemStyled = styled.a<{ active?: boolean }>`
   ${({
     theme: {
       colors,
-      typography: { fontWeight },
+      typography: { fontWeight }
     },
-    active = false,
+    active = false
   }) => css`
     color: ${active ? colors.text.body.primary : colors.text.body.secondary};
     ${active &&
@@ -30,4 +30,4 @@ export const BreadcrumbItemStyled = styled.a<{ active?: boolean }>`
       font-weight: ${fontWeight.bold};
     `}
   `}
-`;
+`

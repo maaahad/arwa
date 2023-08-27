@@ -1,20 +1,19 @@
-import type { ArwaColors } from "../colors/types";
-import { ShadowsTokens } from "../../tokens";
-import "styled-components";
-import { FontTokens } from "../../tokens";
-import { ArwaShadows } from "../shadows/types";
-import { ArwaTypography } from "../typography/types";
-import { ArwaShapes } from "../shapes/types";
-import { ArwaBreakpoints, ArwaDevice } from "../breakpoints/types";
+import type { ArwaColors } from '../colors/types'
+import { ShadowsTokens, FontTokens } from '../../tokens'
+import 'styled-components'
+import { type ArwaShadows } from '../shadows/types'
+import { type ArwaTypography } from '../typography/types'
+import { type ArwaShapes } from '../shapes/types'
+import { type ArwaBreakpoints, type ArwaDevice } from '../breakpoints/types'
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: ArwaColors; // rename it to palette???
-    shadows: ArwaShadows;
-    typography: ArwaTypography;
-    shapes: ArwaShapes;
-    breakpoints: ArwaBreakpoints;
-    device: ArwaDevice;
+    colors: ArwaColors // rename it to palette???
+    shadows: ArwaShadows
+    typography: ArwaTypography
+    shapes: ArwaShapes
+    breakpoints: ArwaBreakpoints
+    device: ArwaDevice
 
     // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
     // breakpoints
