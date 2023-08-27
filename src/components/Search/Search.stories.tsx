@@ -16,36 +16,51 @@ export default {
 } as Meta<typeof Search>;
 
 const Template: StoryFn<typeof Search> = (args) => {
-  const testSearchOptions = [
-    "Muhammed ahad",
-    "Arwa",
-    "israt",
-    "bangladesh",
-    "Stockholm",
-    "Arwa Ahad",
+  const testSearchHints = [
+    {
+      label: "Muhammed ahad",
+      key: 10,
+    },
+    {
+      label: "Arwa",
+      isOptional: true,
+    },
+    {
+      label: "Arwa Ahad",
+    },
+    {
+      label: "Israt Jahan",
+    },
+    {
+      label: "Israt",
+    },
+    {
+      label: "Storckholm",
+    },
   ];
   const [value, setValue] = useState<string>("");
-  const [searchOptions, setSearchOptions] = useState<string[]>([]);
+  const [searchHints, setSearchHints] = useState<typeof testSearchHints>([]);
 
-  const handleSerchOptionSelect = (searchOption?: string) => {
+  const handleSerchOptionSelect = (hint?: (typeof testSearchHints)[number]) => {
     setValue("");
-    setSearchOptions([]);
+    setSearchHints([]);
 
     // Note: Normally this result in redirection on client side
+    console.log(hint);
   };
 
   const handleValueChange = (value: string) => {
     setValue(value);
     // Note: search matching logic in implemented on Client side
-    setSearchOptions(
-      value ? testSearchOptions.filter((option) => option.includes(value)) : [],
+    setSearchHints(
+      value ? testSearchHints.filter((hint) => hint.label.includes(value)) : [],
     );
   };
 
   return (
     <Search
       {...args}
-      searchOptions={searchOptions}
+      searchHints={searchHints}
       value={value}
       onChange={handleValueChange}
       onSelectSearchOption={handleSerchOptionSelect}
@@ -56,4 +71,11 @@ const Template: StoryFn<typeof Search> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   placeholder: "Type e.g Caming name",
+};
+
+export const ResponsiveWidth = Template.bind({});
+
+ResponsiveWidth.args = {
+  placeholder: "Type e.g Caming name (responsive width)",
+  width: [300, 400, 500, 600, "100%"],
 };

@@ -1,5 +1,12 @@
 import { styled, css } from "styled-components";
-import { ColorTokens } from "../../tokens";
+import { applyResponsiveCSS } from "../../styles/responsiveness";
+import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
+
+export const SearchStyled = styled.div<
+  Pick<ResponsivePropDecleration, "width">
+>`
+  ${applyResponsiveCSS}
+`;
 
 export const InputContainer = styled.div<{ hasSearchResults?: boolean }>`
   border: 1px solid red;

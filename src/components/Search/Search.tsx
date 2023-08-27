@@ -1,6 +1,7 @@
 import React from "react";
 import { MagnifyingGlass } from "../../styles/iconography";
 import {
+  SearchStyled,
   InputContainer,
   LeftSlot,
   Input,
@@ -10,34 +11,36 @@ import {
 } from "./styled";
 import Close from "../../styles/iconography/Close";
 import { ColorTokens } from "../../tokens";
+import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
+
+type SearchHint = Partial<Record<any, any>> & {
+  label: string;
+};
 
 // TODO : separate compont for input
-type Props = {
+type Props = Pick<ResponsivePropDecleration, "width"> & {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  searchOptions?: string[]; // TODO: may contain with more option  + cumtom renderer
-  onSelectSearchOption?: (option: string) => void;
+  searchHints?: SearchHint[];
+  onSelectSearchOption?: (hint: SearchHint) => void;
 };
 
-type DropdownProps = Pick<Props, "searchOptions" | "onSelectSearchOption"> & {};
-
-const Dropdown: React.FC<DropdownProps> = ({
-  searchOptions = [],
-  onSelectSearchOption = () => {},
-}) => {
+const Dropdown: React.FC<
+  Pick<Props, "searchHints" | "onSelectSearchOption">
+> = ({ searchHints = [], onSelectSearchOption = () => {} }) => {
   return (
     <DropdownContainer>
       {/* TODO: should be customizable */}
       <DropdownItem selectable={false}>
-        Results: {searchOptions.length}
+        Results: {searchHints.length}
       </DropdownItem>
-      {searchOptions.map((value, index) => (
+      {searchHints.map(({ label }, index) => (
         <DropdownItem
-          onClick={() => onSelectSearchOption(value)}
-          key={`${index}_${value}`}
+          onClick={() => onSelectSearchOption(searchHints[index])}
+          key={`${index}_${label}`}
         >
-          {value}
+          {label}
         </DropdownItem>
       ))}
     </DropdownContainer>
@@ -47,10 +50,11 @@ const Dropdown: React.FC<DropdownProps> = ({
 // TODO: use ref
 const Search: React.FC<Props> = ({
   placeholder = "",
-  searchOptions = [],
+  searchHints = [],
   onChange,
   value,
   onSelectSearchOption,
+  width,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -60,10 +64,10 @@ const Search: React.FC<Props> = ({
     onChange("");
   };
 
-  const hasSearchResults = !!searchOptions.length;
+  const hasSearchResults = !!searchHints.length;
 
   return (
-    <div>
+    <SearchStyled width={width}>
       <InputContainer hasSearchResults={hasSearchResults}>
         <LeftSlot>
           <MagnifyingGlass color={ColorTokens.Light.trunks} />
@@ -85,11 +89,11 @@ const Search: React.FC<Props> = ({
 
       {hasSearchResults && (
         <Dropdown
-          searchOptions={searchOptions}
+          searchHints={searchHints}
           onSelectSearchOption={onSelectSearchOption}
         />
       )}
-    </div>
+    </SearchStyled>
   );
 };
 
