@@ -18,6 +18,7 @@ type SearchHint = Partial<Record<any, any>> & {
 };
 
 // TODO : separate compont for input
+// TODO: size: (xl: 56px, lg: 48px, md: 40px) height
 type Props = Pick<ResponsivePropDecleration, "width"> & {
   value: string;
   onChange: (value: string) => void;
