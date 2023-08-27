@@ -1,6 +1,6 @@
-import { styled, css } from 'styled-components'
-import { applyResponsiveCSS } from '../../styles/responsiveness'
-import { type ResponsivePropDecleration } from '../../styles/responsiveness/types'
+import { styled, css } from "styled-components";
+import { applyResponsiveCSS } from "../../styles/responsiveness";
+import { type ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
 export const CarouselStyled = styled.div<ResponsivePropDecleration>`
   position: relative;
@@ -9,12 +9,12 @@ export const CarouselStyled = styled.div<ResponsivePropDecleration>`
   ${({ theme: { shapes } }) => css`
     border-radius: ${shapes.borderRadius.sm};
   `}
-`
+`;
 
 export const ControlButtonStyled = styled.button<{
-  slot: 'left' | 'right'
-  round?: boolean
-  disabled?: boolean
+  slot: "left" | "right";
+  round?: boolean;
+  disabled?: boolean;
 }>`
   cursor: pointer;
   position: absolute;
@@ -31,7 +31,7 @@ export const ControlButtonStyled = styled.button<{
     slot,
     round = false,
     disabled = false,
-    theme: { colors, shapes, shadows }
+    theme: { colors, shapes, shadows },
   }) => css`
     border: 1px solid ${colors.border};
     border-radius: ${shapes.borderRadius.sm};
@@ -42,7 +42,7 @@ export const ControlButtonStyled = styled.button<{
       border-radius: 50%;
     `}
 
-    ${slot === 'left'
+    ${slot === "left"
       ? css`
           left: 0px;
         `
@@ -60,7 +60,7 @@ export const ControlButtonStyled = styled.button<{
       background-color: ${colors.background};
     }
   `}
-`
+`;
 
 export const SlidesContainer = styled.div<{ scrollable?: boolean }>`
   height: 100%;
@@ -69,20 +69,20 @@ export const SlidesContainer = styled.div<{ scrollable?: boolean }>`
   grid-auto-columns: 100%;
   overflow-x: hidden;
   ${({ scrollable }) => css`
-    overflow-x: ${scrollable ? 'auto' : 'hidden'};
+    overflow-x: ${scrollable ? "auto" : "hidden"};
   `}
-`
+`;
 
 export const Slide = styled.div`
   & > * {
     height: 100%;
   }
-`
+`;
 
 export const IndicatorsStyled = styled.div<{
-  width: number
-  size: number
-  gap: number
+  width: number;
+  size: number;
+  gap: number;
 }>`
   position: absolute;
   bottom: 16px; // Should come from configuration
@@ -97,11 +97,11 @@ export const IndicatorsStyled = styled.div<{
     grid-auto-columns: ${size}px;
     grid-auto-rows: ${size}px;
   `}
-`
+`;
 
 export const IndicatorDot = styled.button<{
-  selected?: boolean
-  translate: number
+  selected?: boolean;
+  translate: number;
 }>`
   all: unset;
   cursor: pointer;
@@ -113,4 +113,4 @@ export const IndicatorDot = styled.button<{
     background-color: ${selected ? colors.accent.primary : colors.surface};
     transform: translateX(${translate}px);
   `}
-`
+`;

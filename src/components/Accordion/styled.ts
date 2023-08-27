@@ -1,5 +1,5 @@
-import { css, styled } from 'styled-components'
-import { FontTokens, ColorTokens } from '../../tokens'
+import { css, styled } from "styled-components";
+import { FontTokens, ColorTokens } from "../../tokens";
 
 export const AccordionStyled = styled.div`
   ${({ theme: { shapes, colors } }) => css`
@@ -11,18 +11,18 @@ export const AccordionStyled = styled.div`
     align-items: stretch;
     gap: 8px;
   `}
-`
+`;
 
 export const Title = styled.h3`
   margin: 0;
   font-size: ${FontTokens.FontSize.fs16};
   font-weight: ${FontTokens.FontWeight.bold};
   line-height: ${FontTokens.LineHeight.lh1_5};
-`
+`;
 
 export const AccordionItemStyled = styled.div<{
-  outside?: boolean
-  expand?: boolean
+  outside?: boolean;
+  expand?: boolean;
 }>`
   ${({ theme: { shapes }, outside = false, expand = false }) => css`
     display: flex;
@@ -35,12 +35,12 @@ export const AccordionItemStyled = styled.div<{
       gap: 8px;
     `}
   `}
-`
+`;
 
 export const AccordionHeader = styled.div<{
-  disabled?: boolean
-  outside?: boolean
-  expand?: boolean
+  disabled?: boolean;
+  outside?: boolean;
+  expand?: boolean;
 }>`
   ${({ theme, disabled = false, outside = false, expand = false }) => css`
     cursor: pointer;
@@ -66,11 +66,11 @@ export const AccordionHeader = styled.div<{
       border-bottom-left-radius: 0;
     `}
   `}
-`
+`;
 
 export const AccordionContentStyled = styled.div<{
-  expand?: boolean
-  outside?: boolean
+  expand?: boolean;
+  outside?: boolean;
 }>`
   ${({ theme: { colors }, expand = false, outside = false }) => css`
     overflow: hidden;
@@ -101,7 +101,7 @@ export const AccordionContentStyled = styled.div<{
       border-top-left-radius: 0;
     `}
   `}
-`
+`;
 
 export const AccordionIconContainer = styled.div<{ expand: boolean }>`
   display: flex;
@@ -117,4 +117,4 @@ export const AccordionIconContainer = styled.div<{ expand: boolean }>`
       : css`
           transform: rotate(0deg);
         `}
-`
+`;

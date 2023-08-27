@@ -1,40 +1,40 @@
-import { ColorTokens } from '../../tokens'
-import { type ArwaColors } from './types'
+import { ColorTokens } from "../../tokens";
+import { type ArwaColors } from "./types";
 
-const getColors = (theme: 'Light' | 'Dark'): ArwaColors => {
+const getColors = (theme: "Light" | "Dark"): ArwaColors => {
   return {
     accent: {
       primary: ColorTokens[theme].piccolo,
-      secondary: ColorTokens[theme].hit
+      secondary: ColorTokens[theme].hit,
     },
     text: {
       body: {
         primary: ColorTokens[theme].bulma,
-        secondary: ColorTokens[theme].trunks
+        secondary: ColorTokens[theme].trunks,
       },
       button: {
         primary: ColorTokens[theme].beerus,
-        secondary: ColorTokens[theme].popo
-      }
+        secondary: ColorTokens[theme].popo,
+      },
     },
     hover: {
       primary: ColorTokens[theme].heles,
-      secondary: ColorTokens[theme].jiren
+      secondary: ColorTokens[theme].jiren,
     },
     icon: ColorTokens[theme].trunks,
     border: ColorTokens[theme].beerus,
     background: ColorTokens[theme].goku,
     surface: ColorTokens[theme].gohan,
-    backdrop: ColorTokens[theme].zeno
-  }
-}
+    backdrop: ColorTokens[theme].zeno,
+  };
+};
 
 const Colors: {
-  Light: ArwaColors
-  Dark: ArwaColors
+  Light: ArwaColors;
+  Dark: ArwaColors;
 } = {
-  Light: getColors('Light'),
-  Dark: getColors('Dark')
-}
+  Light: getColors("Light"),
+  Dark: getColors("Dark"),
+};
 
-export default Colors
+export default Colors;
