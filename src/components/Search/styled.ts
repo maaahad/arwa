@@ -25,15 +25,14 @@ export const InputContainer = styled.div<{ hasSearchResults?: boolean }>`
   justify-content: space-between;
   padding: 16px;
   height: 56px;
-  ${({ theme: { shapes, colors }, hasSearchResults = false }) => css`
+  ${({ theme: { shapes, colors, transitions }, hasSearchResults = false }) => css`
     border: 1px solid ${colors.border};
     border-radius: ${shapes.borderRadius.md};
     &:focus-within {
       border-color: ${colors.accent.primary};
     }
 
-    /* TODO: use theme */
-    transition: border-color 0.3s ease-in, border-radius 0.3s ease-in; 
+    transition: border-color ${transitions.arrival}, border-radius ${transitions.departure}; 
 
     ${hasSearchResults &&
     css`
@@ -61,7 +60,7 @@ export const CloseIcon = styled.div`
 
 export const DropdownContainer = styled.div`
   padding: 12px 4px;
-  animation: ${pulse} .3s linear;
+  animation: ${pulse} 0.2s linear;
   ${({ theme: { colors, shapes, shadows } }) => css`
     box-shadow: ${shadows.lg};
     border: 1px solid ${colors.border};

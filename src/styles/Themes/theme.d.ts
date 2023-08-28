@@ -1,10 +1,11 @@
 import type { ArwaColors } from "../colors/types";
-import { ShadowsTokens, FontTokens } from "../../tokens";
+import { ShadowsTokens, FontTokens, TransitionTokens } from "../../tokens";
 import "styled-components";
 import { type ArwaShadows } from "../shadows/types";
 import { type ArwaTypography } from "../typography/types";
 import { type ArwaShapes } from "../shapes/types";
 import { type ArwaBreakpoints, type ArwaDevice } from "../breakpoints/types";
+import { ArwaTransitions } from "../transitions/types";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -14,11 +15,10 @@ declare module "styled-components" {
     shapes: ArwaShapes;
     breakpoints: ArwaBreakpoints;
     device: ArwaDevice;
+    transitions: ArwaTransitions
 
     // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
-    // breakpoints
     // spacing
-    // transitions
     // zIndex
     // typography
     // default
