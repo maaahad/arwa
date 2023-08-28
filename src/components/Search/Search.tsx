@@ -71,7 +71,7 @@ const Search: React.FC<Props> = ({
     <SearchStyled width={width}>
       <InputContainer hasSearchResults={hasSearchResults}>
         <LeftSlot>
-          <MagnifyingGlass color={ColorTokens.Light.trunks} />
+          <MagnifyingGlass  size="lg"/>
           <Input
             placeholder={placeholder}
             value={value}

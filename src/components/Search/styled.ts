@@ -1,6 +1,16 @@
-import { styled, css } from "styled-components";
+import { styled, css, keyframes } from "styled-components";
 import { applyResponsiveCSS } from "../../styles/responsiveness";
 import { type ResponsivePropDecleration } from "../../styles/responsiveness/types";
+
+
+const pulse = keyframes`
+  from {
+    transform: scale(.99);
+  }
+  to {
+    transform: scale(1);
+  }
+`
 
 export const SearchStyled = styled.div<
   Pick<ResponsivePropDecleration, "width">
@@ -23,7 +33,7 @@ export const InputContainer = styled.div<{ hasSearchResults?: boolean }>`
     }
 
     /* TODO: use theme */
-    transition: all 0.3s ease-in;
+    transition: border-color 0.3s ease-in, border-radius 0.3s ease-in; 
 
     ${hasSearchResults &&
     css`
@@ -51,7 +61,9 @@ export const CloseIcon = styled.div`
 
 export const DropdownContainer = styled.div`
   padding: 12px 4px;
-  ${({ theme: { colors, shapes } }) => css`
+  animation: ${pulse} .3s linear;
+  ${({ theme: { colors, shapes, shadows } }) => css`
+    box-shadow: ${shadows.lg};
     border: 1px solid ${colors.border};
     border-radius: ${shapes.borderRadius.lg};
     border-top-right-radius: 0;
