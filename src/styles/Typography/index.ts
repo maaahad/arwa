@@ -1,4 +1,4 @@
-import { ArwaTypography } from "./types";
+import { type ArwaTypography } from "./types";
 import { FontTokens } from "../../tokens";
 
 export { default as Heading1 } from "./Heading1";

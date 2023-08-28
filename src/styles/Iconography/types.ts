@@ -1,4 +1,4 @@
-import { ColorTokens } from "../../tokens";
+import { type ColorTokens } from "../../tokens";
 
 type IconColor = ColorTokens.Light | ColorTokens.Dark;
 export enum IconSize {
@@ -7,7 +7,7 @@ export enum IconSize {
   lg = 32,
 }
 
-export type IconProps = {
+export interface IconProps {
   size?: keyof typeof IconSize;
   color?: IconColor;
-};
+}

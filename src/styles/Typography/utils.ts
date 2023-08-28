@@ -1,4 +1,4 @@
-import { TypographySize } from "./types";
+import { type TypographySize } from "./types";
 import { FontTokens } from "../../tokens";
 
 type TypographySizeMappingType = {
@@ -22,4 +22,4 @@ const TypographySizeMapping: TypographySizeMappingType = {
 };
 
 export const getFontSize = (size: TypographySize): FontTokens.FontSize =>
-  TypographySizeMapping[size as keyof TypographySizeMappingType];
+  TypographySizeMapping[size];

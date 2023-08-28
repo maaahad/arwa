@@ -1,4 +1,4 @@
-import React, { MutableRefObject, ForwardedRef } from "react";
+import React, { type MutableRefObject, type ForwardedRef } from "react";
 
 export const getComponentRef =
   <T>(ref: MutableRefObject<T>, forwardedRef: ForwardedRef<T>) =>

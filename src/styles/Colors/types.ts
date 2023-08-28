@@ -1,8 +1,8 @@
-import { ColorTokens } from "../../tokens";
+import { type ColorTokens } from "../../tokens";
 
 type Tokens = ColorTokens.Light | ColorTokens.Dark;
 
-export type ArwaColors = {
+export interface ArwaColors {
   accent: {
     primary: Tokens;
     secondary: Tokens;
@@ -26,4 +26,4 @@ export type ArwaColors = {
   background: Tokens;
   surface: Tokens;
   backdrop: Tokens;
-};
+}

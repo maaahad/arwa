@@ -1,5 +1,5 @@
 import { ColorTokens } from "../../tokens";
-import { ArwaColors } from "./types";
+import { type ArwaColors } from "./types";
 
 const getColors = (theme: "Light" | "Dark"): ArwaColors => {
   return {

@@ -1,10 +1,11 @@
 import Colors from "../colors";
-import { DefaultTheme } from "styled-components";
+import { type DefaultTheme } from "styled-components";
 import ArwaThemeProvider from "./ArwaThemeProvider";
 import Shadows from "../shadows";
 import Typography from "../typography";
 import Shapes from "../shapes";
 import { Breakpoints } from "../breakpoints";
+import { Transitions } from "../transitions";
 
 // TODO: need some util type for
 // size
@@ -18,6 +19,7 @@ const getTheme = (theme: "Light" | "Dark"): DefaultTheme => {
     shapes: Shapes,
     breakpoints: Breakpoints,
     device: ["xs", "sm", "md", "lg", "xl"], // TODO: solve it in a better way
+    transitions: Transitions
   };
 };
 

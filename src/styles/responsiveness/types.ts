@@ -1,4 +1,4 @@
-import { BreakpointTokens } from "../../tokens";
+import { type BreakpointTokens } from "../../tokens";
 import type { Tuple } from "../../utils/types";
 
 export enum CSSProperty {

@@ -1,6 +1,6 @@
-import { ArwaShadows } from "./types";
+import { type ArwaShadows } from "./types";
 import { ShadowsTokens } from "../../tokens";
-import { DefaultTheme } from "styled-components";
+import { type DefaultTheme } from "styled-components";
 
 const getShadows = (theme: "Light" | "Dark"): DefaultTheme["shadows"] => {
   return {

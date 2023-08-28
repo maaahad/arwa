@@ -1,4 +1,4 @@
-import { ArwaShapes } from "./types";
+import { type ArwaShapes } from "./types";
 import { ShapeTokens } from "../../tokens";
 
 const Shapes: ArwaShapes = {

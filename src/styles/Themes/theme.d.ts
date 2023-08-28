@@ -1,21 +1,13 @@
 import type { ArwaColors } from "../colors/types";
-import { ShadowsTokens } from "../../tokens";
+import { ShadowsTokens, FontTokens, TransitionTokens } from "../../tokens";
 import "styled-components";
-import { FontTokens } from "../../tokens";
-import { ArwaShadows } from "../shadows/types";
-import { ArwaTypography } from "../typography/types";
-import { ArwaShapes } from "../shapes/types";
-import { ArwaBreakpoints, ArwaDevice } from "../breakpoints/types";
+import { type ArwaShadows } from "../shadows/types";
+import { type ArwaTypography } from "../typography/types";
+import { type ArwaShapes } from "../shapes/types";
+import { type ArwaBreakpoints, type ArwaDevice } from "../breakpoints/types";
+import { ArwaTransitions } from "../transitions/types";
 
 declare module "styled-components" {
-  // FIXME: this might be move to typography
-  type Typography = {
-    fontSize: FontTokens.FontSize;
-    fontWeight: FontTokens.FontWeight;
-    lineHeight: FontTokens.LineHeight;
-    // letterSpacing: FontTokens.LetterSpacing // FIXME: should be fixed later
-  };
-
   export interface DefaultTheme {
     colors: ArwaColors; // rename it to palette???
     shadows: ArwaShadows;
@@ -23,11 +15,10 @@ declare module "styled-components" {
     shapes: ArwaShapes;
     breakpoints: ArwaBreakpoints;
     device: ArwaDevice;
+    transitions: ArwaTransitions
 
     // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
-    // breakpoints
     // spacing
-    // transitions
     // zIndex
     // typography
     // default

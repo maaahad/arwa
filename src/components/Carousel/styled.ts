@@ -1,6 +1,6 @@
 import { styled, css } from "styled-components";
 import { applyResponsiveCSS } from "../../styles/responsiveness";
-import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
+import { type ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
 export const CarouselStyled = styled.div<ResponsivePropDecleration>`
   position: relative;

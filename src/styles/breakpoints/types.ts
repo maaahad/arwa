@@ -2,7 +2,7 @@ import type { BreakpointTokens } from "../../tokens";
 
 export type ArwaDevice = ["xs", "sm", "md", "lg", "xl"];
 
-export type ArwaBreakpoints = {
+export interface ArwaBreakpoints {
   xs: BreakpointTokens.Breakpoints;
   sm: BreakpointTokens.Breakpoints;
   md: BreakpointTokens.Breakpoints;
@@ -13,4 +13,4 @@ export type ArwaBreakpoints = {
     md: BreakpointTokens.Breakpoints;
     lg: BreakpointTokens.Breakpoints;
   };
-};
+}

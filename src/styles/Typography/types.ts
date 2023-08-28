@@ -1,20 +1,20 @@
-import { FontTokens } from "../../tokens";
+import { type FontTokens } from "../../tokens";
 
-type T = {
+interface T {
   fontSize: FontTokens.FontSize;
   fontWeight: FontTokens.FontWeight;
   lineHeight: FontTokens.LineHeight;
   // letterSpacing: FontTokens.LetterSpacing // FIXME: should be fixed later
-};
+}
 
 export type ArwaFontWeight = {
   [key in keyof typeof FontTokens.FontWeight]: FontTokens.FontWeight;
 };
 
-export type ArwaTypography = {
+export interface ArwaTypography {
   h1: T;
   fontWeight: ArwaFontWeight;
-};
+}
 
 export type TypographySize =
   | "3xs"
@@ -31,7 +31,7 @@ export type TypographySize =
   | "6xl"
   | "7xl";
 
-export type TypographyProps = {
+export interface TypographyProps {
   size?: TypographySize;
   secondary?: boolean;
-};
+}

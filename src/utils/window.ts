@@ -1,9 +1,9 @@
 // TODO: Move this to types file
-type ScrollIntoViewOption = {
+interface ScrollIntoViewOption {
   behavior: "smooth" | "auto";
   inline: "start" | "center" | "end" | "nearest";
   block: "start" | "center" | "end" | "nearest";
-};
+}
 
 // TODO: study
 export const scrollIntoView = (

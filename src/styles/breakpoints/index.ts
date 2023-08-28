@@ -1,5 +1,5 @@
 import { BreakpointTokens } from "../../tokens";
-import { ArwaBreakpoints } from "./types";
+import { type ArwaBreakpoints } from "./types";
 
 export const Breakpoints: ArwaBreakpoints = {
   xs: BreakpointTokens.Breakpoints.xs,
