@@ -1,11 +1,12 @@
 import { type ColorTokens } from "../../tokens";
 
-type Tokens = ColorTokens.Light | ColorTokens.Dark;
+type Tokens = ColorTokens.Light | ColorTokens.Dark | ColorTokens.Supportive;
 
 export interface ArwaColors {
   accent: {
     primary: Tokens;
     secondary: Tokens;
+    error: Tokens;
   };
   text: {
     body: {

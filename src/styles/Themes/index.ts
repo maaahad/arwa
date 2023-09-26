@@ -19,7 +19,7 @@ const getTheme = (theme: "Light" | "Dark"): DefaultTheme => {
     shapes: Shapes,
     breakpoints: Breakpoints,
     device: ["xs", "sm", "md", "lg", "xl"], // TODO: solve it in a better way
-    transitions: Transitions
+    transitions: Transitions,
   };
 };
 

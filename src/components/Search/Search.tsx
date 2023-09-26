@@ -2,7 +2,6 @@ import React from "react";
 import { MagnifyingGlass } from "../../styles/iconography";
 import {
   SearchStyled,
-  InputContainer,
   LeftSlot,
   Input,
   CloseIcon,
@@ -12,6 +11,7 @@ import {
 import Close from "../../styles/iconography/Close";
 import { ColorTokens } from "../../tokens";
 import { ResponsivePropDecleration } from "../../styles/responsiveness/types";
+import { InputContainer } from "../Helper/styled";
 
 type SearchHint = Partial<Record<any, any>> & {
   label: string;
@@ -69,9 +69,9 @@ const Search: React.FC<Props> = ({
 
   return (
     <SearchStyled width={width}>
-      <InputContainer hasSearchResults={hasSearchResults}>
+      <InputContainer noBottomBorderRadius={hasSearchResults}>
         <LeftSlot>
-          <MagnifyingGlass  size="lg"/>
+          <MagnifyingGlass size="lg" />
           <Input
             placeholder={placeholder}
             value={value}
