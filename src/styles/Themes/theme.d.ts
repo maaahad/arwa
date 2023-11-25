@@ -15,7 +15,7 @@ declare module "styled-components" {
     shapes: ArwaShapes;
     breakpoints: ArwaBreakpoints;
     device: ArwaDevice;
-    transitions: ArwaTransitions
+    transitions: ArwaTransitions;
 
     // TODO: Reference: https://mui.com/material-ui/customization/default-theme/
     // spacing

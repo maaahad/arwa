@@ -2,7 +2,6 @@ import { styled, css, keyframes } from "styled-components";
 import { applyResponsiveCSS } from "../../styles/responsiveness";
 import { type ResponsivePropDecleration } from "../../styles/responsiveness/types";
 
-
 const pulse = keyframes`
   from {
     transform: scale(.99);
@@ -10,36 +9,12 @@ const pulse = keyframes`
   to {
     transform: scale(1);
   }
-`
+`;
 
 export const SearchStyled = styled.div<
   Pick<ResponsivePropDecleration, "width">
 >`
   ${applyResponsiveCSS}
-`;
-
-export const InputContainer = styled.div<{ hasSearchResults?: boolean }>`
-  border: 1px solid red;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  height: 56px;
-  ${({ theme: { shapes, colors, transitions }, hasSearchResults = false }) => css`
-    border: 1px solid ${colors.border};
-    border-radius: ${shapes.borderRadius.md};
-    &:focus-within {
-      border-color: ${colors.accent.primary};
-    }
-
-    transition: border-color ${transitions.arrival}, border-radius ${transitions.departure}; 
-
-    ${hasSearchResults &&
-    css`
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    `}
-  `}
 `;
 
 export const LeftSlot = styled.div`

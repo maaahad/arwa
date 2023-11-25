@@ -6,6 +6,7 @@ const getColors = (theme: "Light" | "Dark"): ArwaColors => {
     accent: {
       primary: ColorTokens[theme].piccolo,
       secondary: ColorTokens[theme].hit,
+      error: ColorTokens.Supportive.chichi_100,
     },
     text: {
       body: {
