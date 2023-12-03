@@ -1,46 +1,68 @@
-import React, { ReactElement, ReactNode, createContext, useState } from "react";
+import React, {
+  ReactNode,
+  Children,
+  PropsWithChildren,
+  FC,
+  createContext,
+  useContext,
+  useState,
+  ReactElement,
+} from "react";
 
-type TabsProps = {
-  children?: ReactNode | undefined;
+type TabProps = {
+  label: string;
 };
 
-type ExtendedTabsProps<T extends Record<string, any>> = React.FC<T> & {
-  Tab?: React.FC<Record<string, any>> | ReactNode | undefined; // TODO(maaahad): this type needs to be updated
-  TabContent?: React.FC<Record<string, any>> | ReactNode | undefined; // TODO(maaahad): this type needs to be updated
+type TabsType = React.FC<PropsWithChildren<{ currentIdex?: number }>> & {
+  Tab: typeof Tab;
+  TabContent: typeof TabContent;
 };
 
-const TabsContext = createContext<{
-  activeIndex: number;
-  setActiveIndex?: (index: number) => void;
-}>({
-  activeIndex: 0,
-  setActiveIndex: () => {},
-});
+const TabContent: FC<PropsWithChildren> = ({ children }) => {
+  return <>{children}</>;
+};
 
-const Tabs: ExtendedTabsProps<TabsProps> = ({ children }) => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+const Tab: FC<PropsWithChildren<TabProps>> = ({ children }): ReactNode => {
+  return <>{children}</>;
+};
 
+// TODO(maaahad) : give it a try with context
+// LEARN: ReactNode vs ReactElement
+const Tabs: TabsType = ({ children, currentIdex = 0 }) => {
+  const [activeIndex, setActiveIndex] = useState<number>(currentIdex);
+  // TODO(maaahad): ForwardRef
+  // add variant
   return (
-    <TabsContext.Provider
-      value={{
-        activeIndex,
-        setActiveIndex,
-      }}
-    >
-      {children}
-    </TabsContext.Provider>
+    <div>
+      <div style={{ display: "inline-flex", gap: 8 }}>
+        {Children.map(
+          children as ReactElement[],
+          (child: ReactElement<{ label?: string }>, index: number) => {
+            const { label } = child.props;
+            return (
+              <button
+                onClick={() => setActiveIndex(index)}
+                key={`${label}_${index}`}
+              >
+                {label}
+              </button>
+            );
+          },
+        )}
+      </div>
+      <div>
+        {React.Children.map(children, (child, index) => (
+          <div
+            style={{
+              display: activeIndex === index ? "block" : "none",
+            }}
+          >
+            {child}
+          </div>
+        ))}
+      </div>
+    </div>
   );
-};
-
-// TODO(maaaahd): TabContent
-
-const Tab: React.FC<{ label: string }> = ({ label }) => {
-  const [];
-  return <div>{label}</div>;
-};
-
-const TabContent: React.FC<{}> = () => {
-  return <div>TabContent</div>;
 };
 
 Tabs.Tab = Tab;
