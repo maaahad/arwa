@@ -1,71 +1,96 @@
-import React, {
-  ReactNode,
-  Children,
-  PropsWithChildren,
-  FC,
-  createContext,
-  useContext,
-  useState,
-  ReactElement,
-} from "react";
+import React, { PropsWithChildren, FC } from "react";
 
-type TabProps = {
-  label: string;
+import useTabsContext, {
+  TabsContext,
+  TabsContextValue,
+} from "./useTabsContext";
+
+// TODO(maaahad): useId to add id to Tab + Panel
+// TODO(maaahad): add test
+// TODO(maaahad): mdx docs
+
+type CommonProps = {
+  value: string;
+  className?: string;
 };
 
-type TabsType = React.FC<PropsWithChildren<{ currentIdex?: number }>> & {
+type TabProps = CommonProps & {
+  variant?: "default" | "pill";
+};
+
+type TabsProps = CommonProps & {
+  onChange: (vlaue: string) => void;
+};
+
+type TabsType = FC<PropsWithChildren<TabsProps>> & {
   Tab: typeof Tab;
-  TabContent: typeof TabContent;
+  List: typeof List;
+  Panels: typeof Panels;
+  Panel: typeof Panel;
 };
 
-const TabContent: FC<PropsWithChildren> = ({ children }) => {
-  return <>{children}</>;
-};
+const Tab: FC<PropsWithChildren<TabProps>> = ({
+  value,
+  variant = "default",
+  children,
+  className,
+}) => {
+  const { value: activeValue, onChange } = useTabsContext();
 
-const Tab: FC<PropsWithChildren<TabProps>> = ({ children }): ReactNode => {
-  return <>{children}</>;
-};
-
-// TODO(maaahad) : give it a try with context
-// LEARN: ReactNode vs ReactElement
-const Tabs: TabsType = ({ children, currentIdex = 0 }) => {
-  const [activeIndex, setActiveIndex] = useState<number>(currentIdex);
-  // TODO(maaahad): ForwardRef
-  // add variant
+  // TODO(maaahad): implement variant
   return (
-    <div>
-      <div style={{ display: "inline-flex", gap: 8 }}>
-        {Children.map(
-          children as ReactElement[],
-          (child: ReactElement<{ label?: string }>, index: number) => {
-            const { label } = child.props;
-            return (
-              <button
-                onClick={() => setActiveIndex(index)}
-                key={`${label}_${index}`}
-              >
-                {label}
-              </button>
-            );
-          },
-        )}
-      </div>
-      <div>
-        {React.Children.map(children, (child, index) => (
-          <div
-            style={{
-              display: activeIndex === index ? "block" : "none",
-            }}
-          >
-            {child}
-          </div>
-        ))}
-      </div>
+    <button
+      onClick={() => onChange(value)}
+      style={{
+        color: activeValue === value ? "green" : "red",
+      }}
+    >
+      {children}
+    </button>
+  );
+};
+
+const List: FC<PropsWithChildren<{ className?: string }>> = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+const Panel: FC<PropsWithChildren<CommonProps>> = ({ value, children }) => {
+  const { value: activeValue } = useTabsContext();
+
+  return (
+    <div
+      style={{
+        display: value === activeValue ? "block" : "none",
+      }}
+    >
+      {children}
     </div>
   );
 };
 
+const Panels: FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+}) => {
+  return <div>{children}</div>;
+};
+
+const Tabs: TabsType = ({ value, onChange, children }) => {
+  // TODO(maaahad): need to separate List from Panel
+  // useMemo + with memoized children
+  const contextValue: TabsContextValue = {
+    value,
+    onChange,
+  };
+
+  // ?? Is it a good to use cloneElement
+  return (
+    <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
+  );
+};
+
 Tabs.Tab = Tab;
-Tabs.TabContent = TabContent;
+Tabs.List = List;
+Tabs.Panels = Panels;
+Tabs.Panel = Panel;
 
 export default Tabs;
