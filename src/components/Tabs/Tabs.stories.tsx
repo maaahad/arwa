@@ -20,7 +20,7 @@ const Template: StoryFn<typeof Tabs> = (args) => {
 
   return (
     <Tabs {...args} value={activeTab} onChange={setAtiveTab}>
-      <Tabs.List>
+      <Tabs.List variant="segment">
         <Tabs.Tab value="Tab 1">
           <p>Tab one</p>
         </Tabs.Tab>

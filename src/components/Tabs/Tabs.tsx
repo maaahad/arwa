@@ -1,4 +1,5 @@
-import React, { PropsWithChildren, FC } from "react";
+import React, { PropsWithChildren, FC, ReactElement, ReactNode } from "react";
+import { TabStyled } from "./styled";
 
 import useTabsContext, {
   TabsContext,
@@ -8,14 +9,17 @@ import useTabsContext, {
 // TODO(maaahad): useId to add id to Tab + Panel
 // TODO(maaahad): add test
 // TODO(maaahad): mdx docs
+// TOdO(maaahad): ForwardRef
 
 type CommonProps = {
   value: string;
   className?: string;
 };
 
+type TabVariant = "underline" | "pill" | "segment";
+
 type TabProps = CommonProps & {
-  variant?: "default" | "pill";
+  variant?: TabVariant;
 };
 
 type TabsProps = CommonProps & {
@@ -31,27 +35,39 @@ type TabsType = FC<PropsWithChildren<TabsProps>> & {
 
 const Tab: FC<PropsWithChildren<TabProps>> = ({
   value,
-  variant = "default",
+  variant = "underline",
   children,
   className,
 }) => {
   const { value: activeValue, onChange } = useTabsContext();
+  const isActive = activeValue === value;
 
-  // TODO(maaahad): implement variant
   return (
-    <button
+    <TabStyled
       onClick={() => onChange(value)}
-      style={{
-        color: activeValue === value ? "green" : "red",
-      }}
+      variant={variant}
+      active={isActive}
+      className={className}
     >
       {children}
-    </button>
+    </TabStyled>
   );
 };
 
-const List: FC<PropsWithChildren<{ className?: string }>> = ({ children }) => {
-  return <div>{children}</div>;
+const List: FC<
+  PropsWithChildren<{ className?: string; variant?: TabVariant }>
+> = ({ children, variant }) => {
+  // TODO(maaahad): style container (layout props, responsive props)
+  return (
+    <div>
+      {React.Children.map(
+        children as ReactElement[],
+        (child: ReactElement<TabProps>, index) => {
+          return React.cloneElement(child, { variant });
+        },
+      )}
+    </div>
+  );
 };
 
 const Panel: FC<PropsWithChildren<CommonProps>> = ({ value, children }) => {
