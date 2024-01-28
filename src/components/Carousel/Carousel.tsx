@@ -16,7 +16,8 @@ import {
   IndicatorsStyled,
   IndicatorDot,
 } from "./styled";
-import { ChevronLeft, ChevronRight } from "../../styles/iconography";
+import ChevronRight from "../../styles/iconography/ChevronRight";
+import ChevronLeft from "../../styles/iconography/ChevronLeft";
 import { getComponentRef } from "../../utils/components";
 import { scrollIntoView } from "../../utils/window";
 import type { OddNumber } from "../../utils/types";
