@@ -5,7 +5,7 @@ import { type ArwaShadows } from "../shadows/types";
 import { type ArwaTypography } from "../typography/types";
 import { type ArwaShapes } from "../shapes/types";
 import { type ArwaBreakpoints, type ArwaDevice } from "../breakpoints/types";
-import { ArwaTransitions } from "../transitions/types";
+import { type ArwaTransitions } from "../transitions/types";
 
 declare module "styled-components" {
   export interface DefaultTheme {

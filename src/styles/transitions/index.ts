@@ -1,4 +1,4 @@
-import { ArwaTransitions } from "./types";
+import { type ArwaTransitions } from "./types";
 import { TransitionTokens } from "../../tokens";
 
 export const Transitions: ArwaTransitions = {

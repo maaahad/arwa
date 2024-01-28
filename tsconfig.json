@@ -5,7 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "outDir": "dist",
     "declarationDir": "types",
     "allowSyntheticDefaultImports": true,
