@@ -20,7 +20,10 @@
     "format:check": "npx prettier . --check",
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "eslint --fix --ext .js,.ts .",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "type-check": "tsc --noEmit",
+    "tsc": "npm run type-check",
+    "tsc:w": "npm run type-check --watch"
   },
   "repository": {
     "type": "git",

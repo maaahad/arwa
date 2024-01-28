@@ -1,4 +1,4 @@
-import { TransitionTokens } from "../../tokens";
+import { type TransitionTokens } from "../../tokens";
 
 export type ArwaTransitions = {
   [key in keyof typeof TransitionTokens.Transitions]: TransitionTokens.Transitions;
